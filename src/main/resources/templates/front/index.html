@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+.img img {
+	width: 410px;
+	height: 270px;
+}
+</style>
+<head th:include="frontInclude :: header"></head>
+<body>
+	<div th:include="frontInclude :: frontHead"></div>
+	<div class="banner">
+		<div class="cont w1000">
+			<div class="title">
+				<!-- <h3>我的<br />Blog</h3>
+        <h4>啦啦啦啦啦啦</h4> -->
+				<h4 th:text="${version.title}"></h4>
+			</div>
+			<div class="amount">
+				<p>
+					<span class="text">访问量</span><span class="access"
+						th:text="${version.hits}">1000</span>
+				</p>
+				<p>
+					<span class="text">文章</span><span class="daily-record"
+						th:text=${articleCount}>1000</span>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="content" >
+		<div class="cont w1000">
+			<div class="title" id="maodian">
+				<span class="layui-breadcrumb" lay-separator="|"> <a
+					href="javascript:;" class="tag" th:each="tag,iterStat : ${tags} "
+					th:text="${tag}">设计文章</a>
+					<a href="javascript:;" class="tag" >少数派</a>
+					<a href="javascript:;" class="tag" >bilibili科技视频</a>
+					<a href="javascript:;" class="tag" >必应每日壁纸</a>
+				</span>
+			</div>
+			<div class="list-item">
+				<!-- 文章显示区域 -->
+			</div>
+			<div id="demo" style="text-align: center;"></div>
+		</div>
+	</div>
+	<div th:include="frontInclude :: frontFooter"></div>
+	<div th:include="frontInclude :: footer"></div>
+	<script type="text/javascript" src="lib/blog/js/front/frontIndex.js"
+		th:src="@{/lib/blog/js/front/frontIndex.js}"></script>
+	<script type="text/javascript">
+		$('.banner').css("background", "url([[${version.banner}]])");
+	</script>
+</body>
+</html>

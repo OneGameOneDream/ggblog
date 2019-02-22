@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+	#demo1{
+		width: 150px;
+    height: 150px;
+	}
+</style>
+<head th:include="include :: header"></head>
+<body>
+	<article class="page-container">
+		<form class="layui-form" action="" id="submitForm">
+			<input type="hidden" name="id" id="id" th:value="${skill.id}">
+			<input type="hidden" name="image" id="image" th:value="${skill.image}">
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">技能名</label>
+				<div class="layui-input-block">
+					<input type="text" id="name" name="name" 
+						lay-verify="required|name" autocomplete="off"  th:value="${skill.name}"
+						placeholder="请输入技能名" class="layui-input">
+				</div>
+			</div>
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">技能介绍</label>
+				<div class="layui-input-block">
+					<input type="text" id="remarks" name="remarks" 
+						lay-verify="required|remarks" autocomplete="off"  th:value="${skill.remarks}"
+						placeholder="请输入技能介绍" class="layui-input">
+				</div>
+			</div>
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">技能图片</label>
+				<div class="layui-input-block">
+					<div class="layui-upload">
+					  <button type="button" class="layui-btn" id="uploadBtn">上传图片</button>
+					  <div class="layui-upload-list">
+					    <img class="layui-upload-img" id="demo1" th:if="${skill.image}!=null" th:src="${skill.image}">
+					     <img class="layui-upload-img" id="demo1" th:if="${skill.image}==null">
+					    <p id="demoText"></p>
+					  </div>
+					</div>   
+				</div>
+			</div>
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">权重</label>
+				<div class="layui-input-block">
+					<input type="text" id="sort" name="sort" 
+						lay-verify="required|sort" autocomplete="off" th:value="${skill.sort}"
+						placeholder="请输入权重" class="layui-input">
+				</div>
+			</div>
+			
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit="submitBtn"
+						lay-filter="submitBtn" type="button" id="submitBtn">立即提交</button>
+				</div>
+			</div>
+		</form>
+	</article>
+	
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/blog/skill/edit.js"
+		th:src="@{/js/apps/blog/skill/edit.js}"></script>
+		
+</body>
+</html>

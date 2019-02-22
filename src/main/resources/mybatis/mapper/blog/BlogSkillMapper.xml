@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ggblog.modules.blog.dao.BlogSkillDao">
+
+	<!-- mysql -->
+	<sql id="skillColumn">
+		id AS "id",
+		image AS "image",
+		name AS "name",
+		sort AS "sort",
+		create_by AS "createBy",
+		create_date AS "createDate",
+		update_by AS "updateBy",
+		update_date AS "updateDate",
+		remarks AS "remarks",
+		del_flag AS "delFlag"
+	</sql>
+
+	<select id="get" resultType="BlogSkill">
+		SELECT
+		<include refid="skillColumn" />
+		FROM blog_skill
+		WHERE id = #{id}
+	</select>
+
+	<select id="findList" resultType="BlogSkill">
+		SELECT
+		<include refid="skillColumn" />
+		FROM blog_skill
+		<where>
+			AND del_flag = '0'
+		</where>
+		ORDER BY sort desc
+	</select>
+	
+	<select id="count" resultType="int">
+        select count(0) from blog_skill
+       	<where>
+			AND del_flag = '0'  
+		</where>
+     </select>
+	
+	
+	<insert id="insert">
+		INSERT INTO blog_skill 
+		(
+		id,
+		image,
+		name,
+		sort,
+		create_by,
+		create_date,
+		update_by,
+		update_date,
+		remarks,
+		del_flag
+		)
+		VALUES
+		(
+		#{id},
+		#{image},
+		#{name},
+		#{sort},
+		#{createBy},
+		#{createDate},
+		#{updateBy},
+		#{updateDate},
+		#{remarks},
+		#{delFlag}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE
+		blog_skill
+		SET
+		<if test="image != null">image = #{image},</if>		
+		<if test="name != null">name = #{name},</if>		
+		<if test="sort != null">sort = #{sort},</if>		
+		<if test="updateBy != null">update_by = #{updateBy},</if>
+		<if test="remarks != null">remarks = #{remarks},</if>
+		<if test="delFlag != null">del_flag = #{delFlag},</if>
+		<if test="updateDate != null">update_date = #{updateDate}</if>
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		UPDATE
+		blog_skill
+		SET
+		del_flag = '1'
+		WHERE
+		id =#{id}
+	</update>
+
+
+
+
+
+
+
+	<!-- oracle -->
+	<!-- <sql id="skillColumn"> "id" AS "id", "birthday" AS "birthday", "create_by" 
+		AS "createBy", "create_date" AS "createDate", "dept_id" AS "deptId", "email" 
+		AS "email", "hobby" AS "hobby", "mobile" AS "mobile", "name" AS "name", "password" 
+		AS "password", "sex" AS "sex", "stats" AS "stats", "update_by" AS "updateBy", 
+		"update_date" AS "updateDate", "username" AS "username", "remarks" AS "remarks" 
+		</sql> <select id="get" resultType="com.ggblog.modules.sys.domain.SysUser"> 
+		SELECT <include refid="skillColumn"/> FROM "blog_skill" WHERE "id" = #{id} </select> 
+		<select id="findList" resultType="com.ggblog.modules.sys.domain.SysUser"> SELECT 
+		<include refid="skillColumn"/> FROM "blog_skill" <where> <if test="id != null 
+		and id != ''"> AND "id" = #{id} </if> <if test="username != null and username 
+		!= ''"> AND "username "= #{username} </if> </where> ORDER BY "update_date" 
+		</select> <insert id="insert"> INSERT INTO blog_skill ( "id", "birthday", "create_by", 
+		"create_date", "dept_id", "email", "hobby", "mobile", "name", "password", 
+		"sex", "stats", "update_by", "update_date", "username", "remarks" ) VALUES 
+		( #{id}, #{birthday}, #{createBy}, #{createDate}, #{deptId}, #{email}, #{hobby}, 
+		#{mobile}, #{name}, #{password}, #{sex}, #{stats}, #{updateBy}, #{updateDate}, 
+		#{username}, #{remarks} ) </insert> <update id="update"> UPDATE "blog_skill" 
+		SET <if test="username != null">"birthday" = #{birthday},</if> <if test="deptId 
+		!= null">"dept_id" = #{deptId},</if> <if test="email != null">"email" = #{email},</if> 
+		<if test="hobby != null">"hobby" = #{hobby},</if> <if test="mobile != null">"mobile" 
+		= #{mobile},</if> <if test="name != null">"name" = #{name},</if> <if test="sex 
+		!= null">"sex" = #{sex},</if> <if test="stats != null">"stats" = #{stats},</if> 
+		<if test="username != null">"username" = #{username},</if> <if test="updateBy 
+		!= null">"update_by" = #{updateBy},</if> <if test="remarks != null">"remarks" 
+		= #{remarks},</if> <if test="updateDate != null">"update_date" = #{updateDate}</if> 
+		WHERE "id" = #{id} </update> <delete id="delete"> DELETE FROM "blog_skill" 
+		WHERE "id"=#{id} </delete> -->
+
+
+</mapper>

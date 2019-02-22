@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ggblog.modules.sys.dao.SysRoleDao">
+	
+	<!-- mysql -->
+  	<sql id="roleColumn">
+		id AS "id",
+		role_name AS "roleName",
+		role_sign AS "roleSign",
+		is_available AS "isAvailable",
+		create_by AS "createBy",
+		create_date AS "createDate",
+		update_by AS "updateBy",
+		update_date AS "updateDate",
+		remarks AS "remarks",
+		del_flag AS "delFlag"
+	</sql> 
+	
+	
+	 <select id="get" resultType="SysRole">
+		SELECT 
+			<include refid="roleColumn"/>
+		FROM sys_role
+		WHERE id = #{id}
+	</select>
+	
+	<select id="getByRoleName" resultType="SysRole">
+		SELECT
+		<include refid="roleColumn" />
+		FROM sys_role
+		WHERE role_name = #{roleName}
+	</select>
+	
+	<select id="getByRoleSign" resultType="SysRole">
+		SELECT
+		<include refid="roleColumn" />
+		FROM sys_role
+		WHERE role_sign = #{roleSign}
+	</select>
+	
+	
+	
+	 <select id="getByUserId" resultType="SysRole">
+		SELECT 
+			<include refid="roleColumn"/>
+		FROM sys_role
+		WHERE id = #{id}
+	</select>
+	
+	
+	<select id="findList" resultType="SysRole">
+		SELECT 
+			<include refid="roleColumn"/>
+		FROM sys_role 
+		<where>
+		AND del_flag = '0'
+			<if test="id != null and id != ''">
+				AND id = #{id}
+			</if>
+			<if test="roleName != null and roleName != ''">
+				AND role_name LIKE concat(concat('%',#{roleName}),'%')
+			</if>
+		</where>
+		ORDER BY update_date desc
+	</select>
+	
+	<select id="count" resultType="int">
+        select count(0) from sys_role
+        <where>
+		AND del_flag = '0'
+			<if test="id != null and id != ''">
+				AND id = #{id}
+			</if>
+			<if test="roleName != null and roleName != ''">
+				AND role_name LIKE concat(concat('%',#{roleName}),'%')
+			</if>
+		</where>
+     </select>
+	
+	
+	<insert id="insert">
+       INSERT INTO sys_role
+       		(
+	       		id,
+				role_name,
+				role_sign,
+				is_available,
+				create_by,
+				create_date,
+				update_by,
+				update_date,
+				remarks,
+				del_flag
+			)
+       	VALUES
+       		(
+				#{id},
+				#{roleName},
+				#{roleSign},
+				#{isAvailable},
+				#{createBy},
+				#{createDate},
+				#{updateBy},
+				#{updateDate},
+				#{remarks},
+				#{delFlag}
+			)
+    </insert>
+    
+     <update id="update">
+       UPDATE 
+       		sys_role 
+       SET 
+			<if test="roleName != null">role_name = #{roleName},</if>
+            <if test="roleSign != null">role_sign = #{roleSign},</if>
+            <if test="isAvailable != null">is_available = #{isAvailable},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remarks != null">remarks = #{remarks},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="updateDate != null">update_date = #{updateDate}</if>
+       WHERE  id = #{id}
+   	 </update>
+
+	 <update id="delete">
+        UPDATE 
+       		sys_role 
+       SET 
+       		del_flag = '1'
+       WHERE 
+       		 id =#{id}
+    </update>
+	
+	
+	
+	
+	
+	
+	
+	<!-- oracle -->
+	<!--  
+	<sql id="roleColumn">
+		"id" AS "id",
+		"birthday" AS "birthday",
+		"create_by" AS "createBy",
+		"create_date" AS "createDate",
+		"dept_id" AS "deptId",
+		"email" AS "email",
+		"hobby" AS "hobby",
+		"mobile" AS "mobile",
+		"name" AS "name",
+		"password" AS "password",
+		"sex" AS "sex",
+		"stats" AS "stats",
+		"update_by" AS "updateBy",
+		"update_date" AS "updateDate",
+		"username" AS "username",
+		"remarks" AS "remarks"
+	</sql>
+	
+	 <select id="get" resultType="com.ggblog.modules.sys.domain.SysUser">
+		SELECT 
+			<include refid="roleColumn"/>
+		FROM "sys_role" 
+		WHERE "id" = #{id}
+	</select>
+	
+	<select id="findList" resultType="com.ggblog.modules.sys.domain.SysUser">
+		SELECT 
+			<include refid="roleColumn"/>
+		FROM "sys_role" 
+		<where>
+			<if test="id != null and id != ''">
+				AND "id" = #{id}
+			</if>
+			<if test="username != null and username != ''">
+				AND "username "= #{username}
+			</if>
+		</where>
+		ORDER BY "update_date"
+	</select>
+	
+	
+	<insert id="insert">
+       INSERT INTO sys_role
+       		(
+	       		"id",
+				"birthday",
+				"create_by",
+				"create_date",
+				"dept_id",
+				"email",
+				"hobby",
+				"mobile",
+				"name",
+				"password",
+				"sex",
+				"stats",
+				"update_by",
+				"update_date",
+				"username",
+				"remarks"
+			)
+       	VALUES
+       		(
+				#{id},
+				#{birthday},
+				#{createBy},
+				#{createDate},
+				#{deptId},
+				#{email},
+				#{hobby},
+				#{mobile},
+				#{name},
+				#{password},
+				#{sex},
+				#{stats},
+				#{updateBy},
+				#{updateDate},
+				#{username},
+				#{remarks}
+			)
+    </insert>
+    
+     <update id="update">
+       UPDATE 
+       		"sys_role" 
+       SET 
+			<if test="username != null">"birthday" = #{birthday},</if>
+            <if test="deptId != null">"dept_id" = #{deptId},</if>
+            <if test="email != null">"email" = #{email},</if>
+            <if test="hobby != null">"hobby" = #{hobby},</if>
+            <if test="mobile != null">"mobile" = #{mobile},</if>
+            <if test="name != null">"name" = #{name},</if>
+            <if test="sex != null">"sex" = #{sex},</if>
+            <if test="stats != null">"stats" = #{stats},</if>
+            <if test="username != null">"username" = #{username},</if>
+            <if test="updateBy != null">"update_by" = #{updateBy},</if>
+             <if test="remarks != null">"remarks" = #{remarks},</if>
+             <if test="updateDate != null">"update_date" = #{updateDate}</if>
+       WHERE  "id" = #{id}
+    </update>
+
+	 <delete id="delete">
+       DELETE FROM
+       		 "sys_role" 
+       WHERE 
+       		"id"=#{id}
+    </delete>
+    -->
+   
+	
+</mapper>

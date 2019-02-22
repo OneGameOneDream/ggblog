@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+	#demo1{
+		width: 150px;
+    height: 150px;
+	}
+	#demo2{
+		width: 600px;
+    height: 200px;
+	}
+</style>
+<head th:include="include :: header"></head>
+<body>
+	<article class="page-container">
+		<form class="layui-form" action="" id="submitForm">
+			<input type="hidden" name="id" id="id" th:value="${version.id}">
+			<input type="hidden" name="banner" id="banner" th:value="${version.banner}">
+			<input type="hidden" name="logo" id="logo" th:value="${version.logo}">
+			<div class="layui-form-item">
+				<label class="layui-form-label">标题</label>
+				<div class="layui-input-block">
+					<input type="text" id="title" name="title" 
+						lay-verify="required|title" autocomplete="off" 
+						placeholder="请输入标题名" class="layui-input" th:value="${version.title}">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">网站域名</label>
+				<div class="layui-input-block">
+					<input type="text" id="url" name="url" 
+						lay-verify="required|url" autocomplete="off" 
+						placeholder="请输入网站域名" class="layui-input" th:value="${version.url}">
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">logo图</label>
+				<div class="layui-input-block">
+					<div class="layui-upload">
+					  <button type="button" class="layui-btn" id="uploadBtn">上传logo</button>
+					  <div class="layui-upload-list">
+					    <img class="layui-upload-img" id="demo1" th:if="${version.logo}!=null" th:src="${version.logo}">
+					     <img class="layui-upload-img" id="demo1" th:if="${version.logo}==null">
+					    <p id="demoText"></p>
+					  </div>
+					</div>   
+				</div>
+			</div>
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">banner图</label>
+				<div class="layui-input-block">
+					<div class="layui-upload">
+					  <button type="button" class="layui-btn" id="uploadBtn2">上传图片</button>
+					  <div class="layui-upload-list">
+					    <img class="layui-upload-img" id="demo2" th:if="${version.banner}!=null" th:src="${version.banner}">
+					     <img class="layui-upload-img" id="demo2" th:if="${version.banner}==null">
+					    <p id="demoText2"></p>
+					  </div>
+					</div>   
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit="submitBtn"
+						lay-filter="submitBtn" type="button" id="submitBtn">立即提交</button>
+				</div>
+			</div>
+		</form>
+	</article>
+	
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/blog/version/edit.js"
+		th:src="@{/js/apps/blog/version/edit.js}"></script>
+		
+</body>
+</html>

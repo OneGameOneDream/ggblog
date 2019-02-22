@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+	#demo1{
+		width: 150px;
+    height: 150px;
+	}
+	#demo2{
+		width: 385px;
+    height: 220px;
+	}
+</style>
+<head th:include="include :: header"></head>
+<body>
+	<userInfo class="page-container">
+		<form class="layui-form" action="" id="submitForm">
+			<input type="hidden" name="id" id="id" th:value="${userInfo.id}">
+			<input type="hidden" name="qrcode" id="qrcode" th:value="${userInfo.qrcode}">
+			<input type="hidden" name="head" id="head" th:value="${userInfo.head}">
+			<div class="layui-form-item">
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-block">
+					<input type="text" id="name" name="name" 
+						lay-verify="required|name" autocomplete="off" 
+						placeholder="请输入姓名" class="layui-input" th:value="${userInfo.name}">
+				</div>
+			</div>
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">年龄</label>
+				<div class="layui-input-block">
+					<input type="text" id="age" name="age" 
+						lay-verify="required|age" autocomplete="off" 
+						placeholder="请输入年龄" class="layui-input" th:value="${userInfo.age}">
+				</div>
+			</div>
+			
+			
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">Email</label>
+				<div class="layui-input-block">
+					<input type="text" id="email" name="email" 
+						lay-verify="required|email" autocomplete="off" 
+						placeholder="请输入Email" class="layui-input" th:value="${userInfo.email}">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">手机</label>
+				<div class="layui-input-block">
+					<input type="text" id="phone" name="phone" 
+						lay-verify="required|phone" autocomplete="off" 
+						placeholder="请输入手机" class="layui-input" th:value="${userInfo.phone}">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">微信</label>
+				<div class="layui-input-block">
+					<input type="text" id="wechat" name="wechat" 
+						lay-verify="required|wechat" autocomplete="off" 
+						placeholder="请输入微信" class="layui-input" th:value="${userInfo.wechat}">
+				</div>
+			</div>
+			
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">职业</label>
+				<div class="layui-input-block">
+					<input type="text" id="job" name="job" 
+						lay-verify="required|job" autocomplete="off" 
+						placeholder="请输入职业" class="layui-input" th:value="${userInfo.job}">
+				</div>
+			</div>
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">爱好</label>
+				<div class="layui-input-block">
+					<input type="text" id="hobby" name="hobby" 
+						lay-verify="required|hobby" autocomplete="off" 
+						placeholder="请输入爱好" class="layui-input" th:value="${userInfo.hobby}">
+				</div>
+			</div>
+			
+			
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">二维码</label>
+				<div class="layui-input-block">
+					<div class="layui-upload">
+					  <button type="button" class="layui-btn" id="uploadBtn">上传二维码</button>
+					  <div class="layui-upload-list">
+					    <img class="layui-upload-img" id="demo1" th:if="${userInfo.qrcode}!=null" th:src="${userInfo.qrcode}">
+					     <img class="layui-upload-img" id="demo1" th:if="${userInfo.qrcode}==null">
+					    <p id="demoText"></p>
+					  </div>
+					</div>   
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">头像</label>
+				<div class="layui-input-block">
+					<div class="layui-upload">
+					  <button type="button" class="layui-btn" id="uploadBtn2">上传头像</button>
+					  <div class="layui-upload-list">
+					    <img class="layui-upload-img" id="demo2" th:if="${userInfo.head}!=null" th:src="${userInfo.head}">
+					     <img class="layui-upload-img" id="demo2" th:if="${userInfo.head}==null">
+					    <p id="demoText2"></p>
+					  </div>
+					</div>   
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit="submitBtn"
+						lay-filter="submitBtn" type="button" id="submitBtn">立即提交</button>
+				</div>
+			</div>
+		</form>
+	</userInfo>
+	
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/blog/userInfo/edit.js"
+		th:src="@{/js/apps/blog/userInfo/edit.js}"></script>
+		
+</body>
+</html>

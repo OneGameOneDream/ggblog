@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="include :: header"></head>
+<body>
+	<article class="page-container">
+		<form class="layui-form" action="" id="submitForm" lay-filter="submitForm">
+			<input type="hidden" name="id" th:value="${user.id}">
+			<input type="hidden" name="stats" th:value="${user.stats}">
+			
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">用户名</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="username" name="username" lay-verify="required|username" autocomplete="off" placeholder="请输入用户名" class="layui-input" th:value="${user.username}">
+			    </div>
+			  </div>
+			  
+			  
+
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">性别：</label>
+			    <div class="layui-input-block">
+			      <input type="radio" name="sex" value="0" title="男" th:attr="checked=${user.sex=='0'}">
+			      <input type="radio" name="sex" value="1" title="女" th:attr="checked=${user.sex=='1'}">
+			    </div>
+			  </div>
+
+
+
+
+			<div class="layui-form-item">
+			      <label class="layui-form-label">手机：</label>
+			      <div class="layui-input-block">
+			        <input type="tel" id="mobile" name="mobile" lay-verify="required|phone" placeholder="请输入手机" autocomplete="off" class="layui-input" th:value="${user.mobile}">
+			      </div>
+			  </div>
+			<div class="layui-form-item">
+			      <label class="layui-form-label">邮箱：</label>
+			      <div class="layui-input-block">
+			        <input type="text" name="email" id="email" lay-verify="required|email" placeholder="请输入邮箱" autocomplete="off" class="layui-input" th:value="${user.email}">
+			      </div>
+			</div>
+
+
+
+
+
+			<div class="layui-form-item">
+			    <label class="layui-form-label">角色：</label>
+			    <div class="layui-input-block">
+			      <select name="role.id" lay-filter="aihao">
+			        <option value="0" th:each="role,iterStat : ${roleList}"
+								th:if="${role.isAvailable=='0'}" th:value="${role.id}"
+								th:text="${role.roleName}" th:attr="selected=${user.role.id==role.id}">超级管理员</option>
+			      </select>
+			    </div>
+			  </div>
+		
+						
+			 <div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">备注：</label>
+			    <div class="layui-input-block">
+			      <textarea name="remarks" placeholder="请输入内容" class="layui-textarea" th:text="${user.remarks}"></textarea>
+			    </div>
+			  </div>
+
+			 <div class="layui-form-item">
+					<div class="layui-input-block">
+				       <button class="layui-btn" lay-submit="submitBtn" lay-filter="submitBtn"  type="button" id="submitBtn">立即提交</button>
+				    </div>
+			</div>
+		</form>
+	</article>
+	
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/sys/user/edit.js"
+		th:src="@{/js/apps/sys/user/edit.js}"></script>
+
+</body>
+</html>

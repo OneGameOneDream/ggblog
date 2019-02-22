@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="include :: header"></head>
+<body >
+	<div class="page-container">
+		<div class="text-c">
+			<form class="layui-form" action="">	
+				<div class="layui-inline">	
+			      <div class="layui-input-inline">
+			        <select id="type" lay-verify="required" lay-search="">
+			          <option value="">选择日志类型</option>
+			          <option value="success">正常日志</option>
+			          <option value="error">错误日志</option>
+			        </select>
+			      </div>
+				</div>
+				<div class="layui-inline">	
+			      <div class="layui-input-inline">
+			        <select  id="method" lay-verify="required" lay-search="">
+			          <option value="">选择请求方式</option>
+			          <option value="GET">GET</option>
+			          <option value="POST">POST</option>
+			        </select>
+			      </div>
+				</div>
+				<div class="layui-inline">	
+			      <div class="layui-input-inline">
+			        <select  id="createBy" lay-verify="required" lay-search="">
+			          <option value="">选择发起人</option>
+			          <option value="GET" th:each="user,iterStat : ${userList}" th:value="${user.username}" th:text="${user.username}">GET</option>
+			        </select>
+			      </div>
+				</div>
+				
+				<div class="layui-inline">	
+				    <div class="layui-input-inline">
+				      <input type="text" id="remarks" name="remarks"  autocomplete="off" placeholder="输入日志描述" class="layui-input">
+				    </div>
+				 </div>
+				
+				<button class="layui-btn layui-btn-normal" type="button" onclick="search()">
+					<i class="layui-icon layui-icon-search"></i> 搜索
+				</button>
+			</form>
+		</div>
+		<table id="table" lay-filter="table" ></table>
+		
+		<script type="text/html" id="toolbarDemo">
+ 			 <div class="layui-btn-container">
+ 			   <button class="layui-btn layui-btn-sm" th:onclick="batchDelete('[(@{/})]common/log/batchDelete/')">批量删除</button>
+				<button class="layui-btn layui-btn-sm" onclick="emptyLog()">清空日志</button>
+ 			 </div>
+		</script>
+		
+		<script type="text/html" id="barDemo">
+			<a class="layui-btn layui-btn-xs" lay-event="edit">详情</a>
+  			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		</script>
+		
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/common/log/list.js"
+		th:src="@{/js/apps/common/log/list.js}"></script>
+
+	
+	
+</body>
+</html>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ggblog.common.dao.SysLogDao">
+
+	<!-- mysql -->
+	<sql id="logColumn">
+		id AS "id",
+		class_method AS "classMethod",
+		client_ip AS "clientIp",
+		end_time AS "endTime",
+		exception_message AS
+		"exceptionMessage",
+		http_status_code AS "httpStatusCode",
+		method AS
+		"method",
+		param_data AS "paramData",
+		remarks AS "remarks",
+		start_time AS
+		"startTime",
+		time_consuming AS "timeConsuming",
+		type AS "type",
+		url AS "url",
+		create_by AS "createBy",
+		create_date AS "createDate",
+		update_by AS
+		"updateBy",
+		update_date AS "updateDate"
+	</sql>
+
+
+	<select id="get" resultType="SysLog">
+		SELECT
+		<include refid="logColumn" />
+		FROM sys_log
+		WHERE id=#{id}
+	</select>
+
+
+	<select id="findList" resultType="SysLog">
+		SELECT
+		<include refid="logColumn" />
+		FROM sys_log
+		<where>
+			<if test="type != null and type != ''">
+				AND type=#{type}
+			</if>
+			<if test="method != null and method != ''">
+				AND method=#{method}
+			</if>
+			<if test="remarks != null and remarks != ''">
+				AND remarks LIKE concat(concat('%',#{remarks}),'%')
+			</if>
+			<if test="createBy != null and createBy != ''">
+				AND create_by=#{createBy}
+			</if>
+		</where>
+		<choose>
+			<when test="sysPage != null and sysPage.pageNum != null  and sysPage.pageSize != null ">
+				ORDER BY create_date desc	limit #{sysPage.pageNum}, #{sysPage.pageSize} 	
+			</when>
+			<otherwise>
+				ORDER BY create_date desc
+			</otherwise> 
+		</choose>
+	</select>
+	
+	<select id="count" resultType="int">
+        select count(0) from sys_log
+        <where>
+			<if test="type != null and type != ''">
+				AND type=#{type}
+			</if>
+			<if test="method != null and method != ''">
+				AND method=#{method}
+			</if>
+			<if test="remarks != null and remarks != ''">
+				AND remarks LIKE concat(concat('%',#{remarks}),'%')
+			</if>
+			<if test="createBy != null and createBy != ''">
+				AND create_by=#{createBy}
+			</if>
+		</where>
+     </select>
+
+	 <insert id="insert">
+		INSERT INTO sys_log(
+		id,
+		class_method,
+		client_ip,
+		end_time,
+		exception_message,
+		http_status_code,
+		method,
+		param_data,
+		remarks,
+		start_time,
+		time_consuming,
+		type,
+		url,
+		create_by,
+		create_date,
+		update_by,
+		update_date
+		)
+		VALUES(
+		#{id},
+		#{classMethod},
+		#{clientIp},
+		#{endTime},
+		#{exceptionMessage},
+		#{httpStatusCode},
+		#{method},
+		#{paramData},
+		#{remarks},
+		#{startTime},
+		#{timeConsuming},
+		#{type},
+		#{url},
+		#{createBy},
+		#{createDate},
+		#{updateBy},
+		#{updateDate}
+		)
+	</insert>
+
+<!--
+	<update id="update">
+		UPDATE
+		sys_log
+		SET
+		<if test="id != null and id != ''">
+			id=#{id},
+		</if>
+		<if test="classMethod != null and classMethod != ''">
+			class_method=#{classMethod},
+		</if>
+		<if test="clientIp != null and clientIp != ''">
+			client_ip=#{clientIp},
+		</if>
+		<if test="endTime != null and endTime != ''">
+			end_time=#{endTime},
+		</if>
+		<if test="exceptionMessage != null and exceptionMessage != ''">
+			exception_message=#{exceptionMessage},
+		</if>
+		<if test="httpStatusCode != null and httpStatusCode != ''">
+			http_status_code=#{httpStatusCode},
+		</if>
+		<if test="method != null and method != ''">
+			method=#{method},
+		</if>
+		<if test="paramData != null and paramData != ''">
+			param_data=#{paramData},
+		</if>
+		<if test="remarks != null and remarks != ''">
+			remarks=#{remarks},
+		</if>
+		<if test="startTime != null and startTime != ''">
+			start_time=#{startTime},
+		</if>
+		<if test="timeConsuming != null and timeConsuming != ''">
+			time_consuming=#{timeConsuming},
+		</if>
+		<if test="type != null and type != ''">
+			type=#{type},
+		</if>
+		<if test="url != null and url != ''">
+			url=#{url},
+		</if>
+		<if test="createBy != null and createBy != ''">
+			create_by=#{createBy},
+		</if>
+		<if test="createDate != null and createDate != ''">
+			create_date=#{createDate},
+		</if>
+		<if test="updateBy != null and updateBy != ''">
+			update_by=#{updateBy},
+		</if>
+		<if test="updateDate != null and updateDate != ''">
+			update_date=#{updateDate}
+		</if>
+		WHERE id=#{id}
+	</update> 
+-->
+	<delete id="delete">
+		DELETE FROM sys_log
+		WHERE id = #{id}
+	</delete>
+	
+	
+	<delete id="empty">
+		TRUNCATE TABLE sys_log
+	</delete>
+	
+</mapper>

@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Blog后台管理系统</title>
+<link rel="stylesheet" href="../src/css/layui.css"
+	th:href="@{/lib/layui/css/layui.css}">
+</head>
+<body class="layui-layout-body" >
+	<div class="layui-layout layui-layout-admin">
+		<div class="layui-header">
+			<div class="layui-logo" ><i class="layui-icon layui-icon-component" style="font-size: 30px;    color: cornflowerblue;"></i><font>后台管理系统</font></div>
+			 <div class="layui-layout-left" style="margin-top:18px; font-size:16px; color:#FFF;" id="navSorH"><i class="layui-icon layui-icon-shrink-right" style="    font-size: 22px;
+			 "></i></div>
+			<!-- 头部区域（可配合layui已有的水平导航） -->
+			<ul class="layui-nav layui-layout-right">
+				<li class="layui-nav-item"><a href="" target="_blank" th:href="@{/f}"><i class="layui-icon">&#xe68e;</i>主页</a></li>
+				<li class="layui-nav-item "><a href="javascript:;">
+				 <span th:text="${user.username}">用户名</span>
+				</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a href="javascript:void" th:onclick="layer_show('个人资料','[(@{/})]sys/user/info/[(${user.id})]','800','550')">基本资料</a>
+						</dd>
+						<dd>
+							<a href="javascript:void" th:onclick="layer_show('密码修改','[(@{/})]sys/user/updatePassword/[(${user.id})]','500','330')">密码修改</a>
+						</dd>
+					</dl></li>
+				<li class="layui-nav-item"><a href="" th:href="@{/logout}">退出</a></li>
+			</ul>
+		</div>
+
+		<div class="layui-side layui-bg-black">
+			<div class="layui-side-scroll">
+				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+				<ul class="layui-nav layui-nav-tree" lay-filter="left-menu">
+					<li class="layui-nav-item layui-nav-itemed"
+						th:each="pmenu,iterStat : ${menus} "
+						th:if="${pmenu.parentId=='1'}"><a class=""
+						href="javascript:;"><i class="layui-icon " th:classappend="${pmenu.icon}"></i><span
+							th:text="${pmenu.name}" style="margin-left: 5px"></span></a>
+						<dl class="layui-nav-child">
+							<dd th:each="cmenu,iterStat : ${menus}" th:name="${cmenu.href}"
+								th:if="${cmenu.parentId==pmenu.id}">
+								<a href="javascript:;" th:text="${cmenu.name}"
+									th:onclick="addTab('[(${cmenu.name})]','[(${cmenu.href})]','[(${cmenu.id})]')">列表一</a>
+							</dd>
+						</dl></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="layui-body" style="bottom:0">
+			<!-- 内容主体区域 -->
+			<div class="layui-tab" lay-allowClose="true" lay-filter="tab-switch" style="margin: 0 0; ">
+				<ul class="layui-tab-title">
+					 <li class="layui-this">欢迎页</li>
+				</ul>
+				<div class="layui-tab-content" style="padding: 0px;">
+					  <div class="layui-tab-item layui-show">
+					      1. 高度默认自适应，也可以随意固宽。
+					      <br>2. Tab进行了响应式处理，所以无需担心数量多少。
+					  </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="layui-footer">
+			底部固定区域
+			© layui.com - 底部固定区域
+		</div> -->
+	</div>
+	<script src="../src/layui.js" th:src="@{/lib/layui/layui.js}"></script>
+	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"
+		th:src="@{/lib/jquery/1.9.1/jquery.min.js}"></script>
+	<script type="text/javascript" src="main/ogod.js"
+		th:src="@{/main/ogod.js}"></script>
+	<script type="text/javascript" src="lib/layer/2.4/layer.js"
+th:src="@{/lib/layer/2.4/layer.js}"></script>
+	<script type="text/javascript" src="lib/layer/2.4/layer.js"
+		th:src="@{/lib/layer/2.4/layer.js}"></script>
+	<script>
+		//JavaScript代码区域
+		var element;
+		var $;
+		layui.use('element', function() {
+			$ = layui.jquery;
+			element = layui.element;
+
+			
+			var i=0;
+			$('#navSorH').click(function(){
+				debugger;
+				if(i==0){
+					
+					$(".layui-side").animate({width:'0px'});
+					$(".layui-body").animate({left:'0px'});
+					$('#navSorH i').removeClass('layui-icon-shrink-right');
+					$('#navSorH i').addClass('layui-icon-spread-left');
+					
+					//$(this).text("显示左侧导航");			
+					i++;
+				}else{
+					$('#navSorH i').removeClass('layui-icon-spread-left');
+					$('#navSorH i').addClass('layui-icon-shrink-right');
+					$(".layui-side").animate({width:'200px'});
+					$(".layui-body").animate({left:'200px'});
+					
+					//$(this).text("隐藏左侧导航");
+					i--;
+				}		
+
+			});	
+			
+
+		});
+		/**
+		 * 新增tab选项卡，如果已经存在则打开已经存在的，不存在则新增
+		 * @param tabTitle 选项卡标题名称
+		 * @param tabUrl 选项卡链接的页面URL
+		 * @param tabId 选项卡id
+		 */
+		function addTab(tabTitle, tabUrl, tabId) {
+			 if ($(".layui-tab-title li[lay-id=" + tabId + "]").length > 0) {
+				element.tabChange('tab-switch', tabId);
+			} else {
+				element.tabAdd('tab-switch', {
+					title : tabTitle
+					,content: '<iframe src='+tabUrl+' width="100%" style="min-height: 615px;" frameborder="0" scrolling="auto" onload="setIframeHeight(this)"></iframe>' // 选项卡内容，支持传入html
+					,id : tabId
+				//选项卡标题的lay-id属性值
+				});
+				element.tabChange('tab-switch', tabId); //切换到新增的tab上
+			} 
+		}
+		/**
+		 * ifrme自适应页面高度，需要设定min-height
+		 * @param iframe
+		 */
+		function setIframeHeight(iframe) {
+			if (iframe) {
+				var iframeWin = iframe.contentWindow
+						|| iframe.contentDocument.parentWindow;
+				if (iframeWin.document.body) {
+					iframe.height = iframeWin.document.documentElement.scrollHeight
+							|| iframeWin.document.body.scrollHeight;
+				}
+			}
+		};
+		
+		
+		
+	</script>
+</body>
+</html>

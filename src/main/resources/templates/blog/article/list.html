@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="include :: header"></head>
+<body >
+	<div class="page-container">
+		<div class="text-c">		
+			<form class="layui-form" action="">	
+				
+				<div class="layui-inline">	
+				    <div class="layui-input-inline">
+				      <input type="text" id="title" name="title"  autocomplete="off" placeholder="输入文章标题" class="layui-input">
+				    </div>
+				 </div>
+			
+				<button class="layui-btn layui-btn-normal" type="button" onclick="search()">
+					<i class="layui-icon layui-icon-search"></i> 搜索
+				</button>
+			</form>
+		</div>
+		<table id="table" lay-filter="table" ></table>
+		
+		<script type="text/html" id="toolbarDemo">
+ 			 <div class="layui-btn-container">
+ 			   <button class="layui-btn layui-btn-sm" th:onclick="batchDelete('[(@{/})]blog/article/batchDelete/')">批量删除</button>
+   			   <button class="layui-btn layui-btn-sm" th:onclick="layer_show('添加文章','[(@{/})]blog/article/add','800','600',true)">添加文章</button>
+ 			 </div>
+		</script>
+		
+		<script type="text/html" id="barDemo">
+			<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="goto">访问</a>
+  			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		</script>
+		
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/blog/article/list.js"
+		th:src="@{/js/apps/blog/article/list.js}"></script>
+</body>
+</html>

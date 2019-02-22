@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="include :: header"></head>
+<body>
+	<article class="page-container">
+		<form class="layui-form" action="" id="submitForm">
+			
+			<input type="hidden" name="parentId" th:value="${menu.id}">
+			
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">上级菜单</label>
+			    <div class="layui-input-block">
+			      <input type="text"  readonly="readonly"  autocomplete="off" class="layui-input" th:value="${menu.name}">
+			    </div>
+			  </div>
+			  
+			  
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">菜单类型：</label>
+			    <div class="layui-input-block">
+			       <input type="radio" name="type" value="0" title="目录" th:attr="checked=${menu.type==0}">
+			       <input type="radio" name="type" value="1" title="菜单" th:attr="checked=${menu.type==1}">
+			       <input type="radio" name="type" value="2" title="按钮" th:attr="checked=${menu.type==2}">
+			    </div>
+			  </div>
+			  
+
+			<div class="layui-form-item">
+			      <label class="layui-form-label">菜单名称：</label>
+			      <div class="layui-input-block">
+			        <input type="text" id="name" name="name" lay-verify="required|name"  placeholder="请输入菜单名" autocomplete="off" class="layui-input">
+			      </div>
+			 </div>
+			 
+			 
+			<div class="layui-form-item">
+			      <label class="layui-form-label">菜单url：</label>
+			      <div class="layui-input-block">
+			        <input type="text" id="href" name="href"   placeholder="请输入链接" autocomplete="off" class="layui-input">
+			      </div>
+			</div>
+			
+			<div class="layui-form-item">
+			      <label class="layui-form-label">权限标识：</label>
+			      <div class="layui-input-block">
+			        <input type="text" id="permission" name="permission"  placeholder="请输入标识" autocomplete="off" class="layui-input">
+			      </div>
+			</div>
+
+			
+			<div class="layui-form-item">
+			      <label class="layui-form-label">权重排序：</label>
+			      <div class="layui-input-block">
+			        <input type="text" id="sort" name="sort"  placeholder="请输入权重"  autocomplete="off" class="layui-input">
+			      </div>
+			</div>
+				
+			<div class="layui-form-item">
+			    <label class="layui-form-label">是否显示：</label>
+			    <div class="layui-input-block">
+			       <input type="radio" name="isShow" value="0" title="是" checked>
+			       <input type="radio" name="isShow" value="1" title="否" >
+			    </div>
+			  </div>
+				
+				
+			<div class="layui-form-item">
+					<div class="layui-input-block">
+				      <button class="layui-btn" lay-submit="submitBtn" lay-filter="submitBtn"  type="button" id="submitBtn">立即提交</button>
+				    </div>
+			</div>
+		
+		</form>
+		
+		
+	</article>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/sys/menu/add.js"
+		th:src="@{/js/apps/sys/menu/add.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+	#demo1{
+		width: 250px;
+    height: 150px;
+	}
+</style>
+<head th:include="include :: header"></head>
+<body>
+	<article class="page-container">
+		<form class="layui-form" action="" id="submitForm">
+			<input type="hidden" name="id" id="id" th:value="${article.id}">
+			<input type="hidden" name="content" id="content" th:value="${article.content}">
+			<input type="hidden" name="image" id="image" value="">
+			<div class="layui-form-item">
+				<label class="layui-form-label">标题</label>
+				<div class="layui-input-inline" style="width:35%">
+					<input type="text" id="title" name="title" 
+						lay-verify="required|title" autocomplete="off" 
+						placeholder="请输入标题名" class="layui-input" th:value="${article.title}">
+				</div>
+				<label class="layui-form-label">作者</label>
+				<div class="layui-input-inline" style="width:35%" >
+					<input type="text" id="author" name="author"
+						lay-verify="required|author" autocomplete="off"
+						placeholder="请输入作者名" class="layui-input" th:value="${article.author}">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">缩略图</label>
+				<div class="layui-input-block">
+					<div class="layui-upload">
+					  <button type="button" class="layui-btn" id="uploadBtn">上传图片</button>
+					  <div class="layui-upload-list">
+					    <img class="layui-upload-img" id="demo1" th:if="${article.image}!=null" th:src="${article.image}">
+					     <img class="layui-upload-img" id="demo1" th:if="${article.image}==null">
+					    <p id="demoText"></p>
+					  </div>
+					</div>    
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">内容</label>
+				<div class="layui-input-block">
+					<textarea class="layui-textarea" id="LAY_demo1" style="display: none" th:text="${article.content}">  
+					</textarea>
+				</div>
+			</div>
+			
+
+			<div class="layui-form-item">
+			    <label class="layui-form-label">标签：</label>
+				    <div class="layui-input-block">
+						<input type="text" id="tags" name="tags"
+							autocomplete="off" placeholder="请输入标签" lay-verify="required|tags" class="layui-input" th:value="${article.tags}">
+					</div>
+		    </div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">排序</label>
+				<div class="layui-input-block">
+					<input type="text" id="sort" name="sort"
+						autocomplete="off" placeholder="请输入排序" class="layui-input" th:value="${article.sort}">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">描述</label>
+				<div class="layui-input-block">
+					<input type="text" id="remarks" name="remarks"
+						 autocomplete="off"
+						placeholder="请输入描述信息" class="layui-input" lay-verify="required|remarks" th:value="${article.remarks}">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">开启评论</label>
+				<div class="layui-input-inline">
+					<input id="" type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="on|off" value="">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit="submitBtn"
+						lay-filter="submitBtn" type="button" id="submitBtn">立即提交</button>
+				</div>
+			</div>
+		</form>
+	</article>
+	
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/blog/article/edit.js"
+		th:src="@{/js/apps/blog/article/edit.js}"></script>
+		
+</body>
+</html>

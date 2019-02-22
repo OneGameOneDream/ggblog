@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="include :: header"></head>
+<body>
+	<article class="page-container">
+		<form class="layui-form" action="" id="submitForm" lay-filter="submitForm">
+		
+			<input type="hidden" id="id" name="id" th:value="${role.id}">
+			<input type="hidden" id="menuIds" name="menuIds">
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">角色名</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="roleName" name="roleName" lay-verify="required|roleName" autocomplete="off" readonly="readonly" placeholder="请输入角色名" class="layui-input" th:value="${role.roleName}">
+			    </div>
+			  </div>
+			  
+			  
+
+ 			<div class="layui-form-item">
+			    <label class="layui-form-label">角色标识</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="roleSign" name="roleSign" lay-verify="required|roleSign" autocomplete="off" readonly="readonly" placeholder="请输入角色标识" class="layui-input" th:value="${role.roleSign}">
+			    </div>
+			  </div>
+			  
+			<div class="layui-form-item">
+			    <label class="layui-form-label">角色描述</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="remarks" name="remarks" lay-verify="required|remarks" autocomplete="off" placeholder="请输入角色描述" class="layui-input" th:value="${role.remarks}">
+			    </div>
+			  </div>
+
+			<div class="layui-form-item">
+			    <label class="layui-form-label">角色权限</label>
+			    <div class="layui-input-block">
+			      <ul id="tree" class="ztree"></ul>
+			    </div>
+			  </div>
+
+
+
+
+			 <div class="layui-form-item">
+					<div class="layui-input-block">
+				       <button class="layui-btn" lay-submit="submitBtn" lay-filter="submitBtn"  type="button" id="submitBtn">立即提交</button>
+				    </div>
+			</div>
+		</form>
+	</article>
+	
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/sys/role/edit.js"
+		th:src="@{/js/apps/sys/role/edit.js}"></script>
+	<script type="text/javascript" src="js/apps/common/tree/menuTree.js"
+		th:src="@{/js/apps/common/tree/menuTree.js}"></script>
+		
+</body>
+</html>

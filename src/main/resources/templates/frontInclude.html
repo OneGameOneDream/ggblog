@@ -1,0 +1,62 @@
+<head th:fragment="header">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>博客</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="shortcut icon" href="/favicon.ico" th:href="@{/favicon.ico}"/>
+	<link rel="stylesheet" type="text/css" href="lib/layui/css/layui.css"
+	th:href="@{/lib/layui/css/layui.css}" />
+	 <link rel="stylesheet" type="text/css" href="lib/blog/css/main.css"
+	th:href="@{/lib/blog/css/main.css}" />
+</head>
+<div th:fragment="footer">
+		<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"
+		th:src="@{/lib/jquery/1.9.1/jquery.min.js}"></script>
+	<script type="text/javascript" src="lib/layui/layui.js"
+		th:src="@{/lib/layui/layui.js}"></script>
+		<script type="text/javascript" src="lib/layer/2.4/layer.js"
+		th:src="@{/lib/layer/2.4/layer.js}"></script>
+</div>
+
+<div th:fragment="frontHead">
+	 <div class="header">
+	    <div class="menu-btn">
+	      <div class="menu"></div>
+	    </div>
+	    <h1 class="logo">
+	      <a href="index.html" th:href="@{/f}">
+	        <span>MYBLOG</span>
+	        <img  src="../res/img/logo.png" th:src="${version.logo}" width="100" height="100">
+	      </a>
+	    </h1>
+	    <div class="nav">
+	      <a href="index.html" th:href="@{/f}" >首页</a>
+	      <a href="leacots.html">留言</a>
+	      <a href="album.html">相册</a>
+	      <a href="about.html"  th:href="@{/f/about}" >关于</a>
+	    </div>
+	    <p class="welcome-text">
+	      欢迎来到<span class="name" th:text="${userInfo.name}">Gao</span>的博客~
+	    </p>
+	 </div>
+</div>
+
+
+<div th:fragment="frontFooter">
+	<div class="footer-wrap">
+    <div class="footer w1000">
+      <div class="qrcode">
+        <img src="../res/img/erweima.jpg" width="160" height="160" th:src="${userInfo.qrcode}">
+      </div>
+      <div class="practice-mode">
+        <div class="text">
+          <h4 class="title">我的联系方式</h4>
+          <p>微信<span class="WeChat" th:text="${userInfo.wechat}">1234567890</span></p>
+          <p>手机<span class="iphone" th:text="${userInfo.phone}">1234567890</span></p>
+          <p>邮箱<span class="email" th:text="${userInfo.email}">1234567890@qq.com</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

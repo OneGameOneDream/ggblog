@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="include :: header"></head>
+<style>
+	.layui-table-body .layui-table-cell{
+		height:65px;
+	}
+</style>
+<body >
+	<div class="page-container">
+		<table id="table" lay-filter="table" ></table>
+		
+		<script type="text/html" id="toolbarDemo">
+ 			 <div class="layui-btn-container">
+ 			   <button class="layui-btn layui-btn-sm" th:onclick="batchDelete('[(@{/})]blog/skill/batchDelete/')">批量删除</button>
+   			   <button class="layui-btn layui-btn-sm" th:onclick="layer_show('添加技能','[(@{/})]blog/skill/add','800','600',true)">添加技能</button>
+ 			 </div>
+		</script>
+		
+		<script type="text/html" id="barDemo">
+  			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		</script>
+		
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/blog/skill/list.js"
+		th:src="@{/js/apps/blog/skill/list.js}"></script>
+</body>
+</html>

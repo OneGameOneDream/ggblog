@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="include :: header"></head>
+<body>
+	<article class="page-container">
+		<form class="layui-form" action="" id="submitForm">
+			
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">标签名</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="label" name="label" lay-verify="required|label" autocomplete="off"  placeholder="请输入标签名" class="layui-input">
+			    </div>
+			  </div>
+			   <div class="layui-form-item">
+			    <label class="layui-form-label">数值名</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="value" name="value" lay-verify="required|value" autocomplete="off"  placeholder="请输入数值名" class="layui-input">
+			    </div>
+			  </div>
+			  
+			   <div class="layui-form-item">
+			    <label class="layui-form-label">类型</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="type" name="type" lay-verify="required|type" autocomplete="off"  placeholder="请输入类型" class="layui-input" th:value="${dict.type}">
+			    </div>
+			  </div>
+			   <div class="layui-form-item">
+			    <label class="layui-form-label">排序</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="type" name="sort" lay-verify="required|sort" autocomplete="off"  placeholder="请输入排序" class="layui-input" th:value="${dict.sort}">
+			    </div>
+			  </div>
+			  
+				<div class="layui-form-item">
+			    <label class="layui-form-label">描述</label>
+			    <div class="layui-input-block">
+			      <input type="text" id="remarks" name="remarks" lay-verify="required|remarks" autocomplete="off" placeholder="请输入描述信息" class="layui-input" th:value="${dict.remarks}">
+			    </div>
+			  </div>
+
+
+			 <div class="layui-form-item">
+					<div class="layui-input-block">
+				      <button class="layui-btn" lay-submit="submitBtn" lay-filter="submitBtn"  type="button" id="submitBtn">立即提交</button>
+				    </div>
+			</div>
+		</form>
+		
+		
+	</article>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="js/apps/sys/dict/add.js"
+		th:src="@{/js/apps/sys/dict/add.js}"></script>
+
+</body>
+</html>

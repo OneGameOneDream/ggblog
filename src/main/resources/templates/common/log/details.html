@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="include :: header"></head>
+<body>
+	<article class="page-container">
+		<form class="layui-form" action="" id="submitForm" lay-filter="submitForm">
+			<input type="hidden" name="id" id="id" th:value="${log.id}" />
+			
+			
+			 <div class="layui-form-item">
+			    <label class="layui-form-label">客户端请求ip：</label>
+			    <div class="layui-input-block">
+			      <input type="text"  class="layui-input" readonly="readonly" id="clientIp" name="clientIp" th:value="${log.clientIp}">
+			    </div>
+			  </div>
+			
+			
+			
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label">描述信息：</label>
+			    <div class="layui-input-block">
+			      <input type="text"  class="layui-input" readonly="readonly" id="remarks" name="remarks" th:value="${log.remarks}">
+			    </div>
+			  </div>
+			
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label">客户端请求路径：</label>
+			    <div class="layui-input-block">
+			      <input type="text"  class="layui-input" readonly="readonly" id="url" name="url" th:value="${log.url}">
+			    </div>
+			  </div>
+			
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label">请求类型：</label>
+			    <div class="layui-input-block">
+			      <input type="text"  class="layui-input" readonly="readonly" id="type" name="type" th:value="${log.type}=='success'?'正常日志'  :'错误日志' " >
+			    </div>
+			  </div>
+			
+			<div class="layui-form-item" th:if="${log.type=='error'}">
+			    <label class="layui-form-label">错误描述：</label>
+			    <div class="layui-input-block">
+			      <input type="text"  class="layui-input" readonly="readonly" id="exceptionMessage" name="exceptionMessage" th:value="${log.exceptionMessage}">
+			    </div>
+			  </div>
+			
+			
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label">请求方式：</label>
+			    <div class="layui-input-block">
+			      <input type="text"  class="layui-input" readonly="readonly" id="method" name="method" th:value="${log.method}">
+			    </div>
+			  </div>
+			
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label">请求的方法名：</label>
+			    <div class="layui-input-block">
+			      <input type="text"  class="layui-input" readonly="readonly" id="classMethod" name="classMethod" th:value="${log.classMethod}">
+			    </div>
+			  </div>
+			
+			
+			
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label">请求参数：</label>
+			    <div class="layui-input-block">
+			      <input type="text"  class="layui-input" readonly="readonly" id="paramData" name="paramData" th:value="${log.paramData}">
+			    </div>
+			  </div>
+			
+			
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label">状态码：</label>
+			    <div class="layui-input-block">
+			      <input type="text"  class="layui-input" readonly="readonly" id="httpStatusCode" name="httpStatusCode" th:value="${log.httpStatusCode}">
+			    </div>
+			  </div>
+			
+			
+		</form>
+	</article>
+
+	<!--_footer 作为公共模版分离出去-->
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="static/ogod/ogod.js"
+		th:src="@{/ogod/ogod.js}"></script>
+	<!--/_footer 作为公共模版分离出去-->
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ggblog.modules.sys.dao.SysUserDao">
+
+	<!-- mysql -->
+	<sql id="userColumn">
+		id AS "id",
+		create_by AS "createBy",
+		create_date AS "createDate",
+		dept_id AS "deptId",
+		email AS "email",
+		hobby AS "hobby",
+		mobile AS "mobile",
+		name AS "name",
+		password AS
+		"password",
+		sex AS "sex",
+		stats AS "stats",
+		update_by AS "updateBy",
+		update_date AS "updateDate",
+		username AS "username",
+		remarks AS
+		"remarks",
+		del_flag AS "delFlag",
+		login_ip AS "loginIp",
+		login_date AS "loginDate",
+		login_count AS "loginCount"
+	</sql>
+
+	<select id="get" resultType="SysUser">
+		SELECT
+		<include refid="userColumn" />
+		FROM sys_user
+		WHERE id = #{id}
+	</select>
+	
+	<select id="getByUsername" resultType="SysUser">
+		SELECT
+		<include refid="userColumn" />
+		FROM sys_user
+		WHERE username = #{username}
+	</select>
+	
+
+	<select id="findList" resultType="SysUser">
+		SELECT
+		<include refid="userColumn" />
+		FROM sys_user
+		<where>
+			AND del_flag = '0'
+			<if test="username != null and username != ''">
+				AND username LIKE concat(concat('%',#{username}),'%')
+			</if>
+			<if test="stats != null and stats != ''">
+				AND stats = #{stats}
+			</if>
+			<if test="sex != null and sex != ''">
+				AND sex = #{sex}
+			</if>
+		</where>
+		<choose>
+			<when test="sysPage != null  and sysPage.pageNum != null  and sysPage.pageSize != null">
+				ORDER BY create_date desc	limit #{sysPage.pageNum}, #{sysPage.pageSize} 	
+			</when>
+			<otherwise>
+				ORDER BY create_date desc
+			</otherwise> 
+		</choose>
+	</select>
+
+	<select id="count" resultType="int">
+        select count(0) from sys_user
+        <where>
+			AND del_flag = '0'
+			<if test="username != null and username != ''">
+				AND username LIKE concat(concat('%',#{username}),'%')
+			</if>
+			<if test="stats != null and stats != ''">
+				AND stats = #{stats}
+			</if>
+			<if test="sex != null and sex != ''">
+				AND sex = #{sex}
+			</if>
+		</where>
+     </select>
+
+
+
+	<insert id="insert">
+		INSERT INTO sys_user
+		(
+		id,
+		create_by,
+		create_date,
+		dept_id,
+		email,
+		hobby,
+		mobile,
+		name,
+		password,
+		sex,
+		stats,
+		update_by,
+		update_date,
+		username,
+		remarks,
+		del_flag,
+		login_ip,
+		login_date,
+		login_count
+		)
+		VALUES
+		(
+		#{id},
+		#{createBy},
+		#{createDate},
+		#{deptId},
+		#{email},
+		#{hobby},
+		#{mobile},
+		#{name},
+		#{password},
+		#{sex},
+		#{stats},
+		#{updateBy},
+		#{updateDate},
+		#{username},
+		#{remarks},
+		#{delFlag},
+		#{loginIp},
+		#{loginDate},
+		#{loginCount}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE
+		sys_user
+		SET
+		<if test="deptId != null">dept_id = #{deptId},</if>
+		<if test="email != null">email = #{email},</if>
+		<if test="password != null">password = #{password},</if>
+		<if test="hobby != null">hobby = #{hobby},</if>
+		<if test="mobile != null">mobile = #{mobile},</if>
+		<if test="name != null">name = #{name},</if>
+		<if test="sex != null">sex = #{sex},</if>
+		<if test="stats != null">stats = #{stats},</if>
+		<if test="username != null">username = #{username},</if>
+		<if test="updateBy != null">update_by = #{updateBy},</if>
+		<if test="remarks != null">remarks = #{remarks},</if>
+		<if test="delFlag != null">del_flag = #{delFlag},</if>
+		<if test="loginIp != null">login_ip = #{loginIp},</if>
+		<if test="loginDate != null">login_date = #{loginDate},</if>
+		<if test="loginCount != null">login_count = #{loginCount},</if>
+		<if test="updateDate != null">update_date = #{updateDate}</if>
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		UPDATE
+		sys_user
+		SET
+		del_flag = '1'
+		WHERE
+		id =#{id}
+	</update>
+<!-- 	
+	<delete id="delete">
+		DELETE 
+		FROM sys_user
+		WHERE id=#{id}		
+	</delete> -->
+
+
+
+
+
+
+	<!-- oracle -->
+	<!-- <sql id="userColumn"> "id" AS "id", "birthday" AS "birthday", "create_by" 
+		AS "createBy", "create_date" AS "createDate", "dept_id" AS "deptId", "email" 
+		AS "email", "hobby" AS "hobby", "mobile" AS "mobile", "name" AS "name", "password" 
+		AS "password", "sex" AS "sex", "stats" AS "stats", "update_by" AS "updateBy", 
+		"update_date" AS "updateDate", "username" AS "username", "remarks" AS "remarks" 
+		</sql> <select id="get" resultType="com.ggblog.modules.sys.domain.SysUser"> 
+		SELECT <include refid="userColumn"/> FROM "sys_user" WHERE "id" = #{id} </select> 
+		<select id="findList" resultType="com.ggblog.modules.sys.domain.SysUser"> SELECT 
+		<include refid="userColumn"/> FROM "sys_user" <where> <if test="id != null 
+		and id != ''"> AND "id" = #{id} </if> <if test="username != null and username 
+		!= ''"> AND "username "= #{username} </if> </where> ORDER BY "update_date" 
+		</select> <insert id="insert"> INSERT INTO sys_user ( "id", "birthday", "create_by", 
+		"create_date", "dept_id", "email", "hobby", "mobile", "name", "password", 
+		"sex", "stats", "update_by", "update_date", "username", "remarks" ) VALUES 
+		( #{id}, #{birthday}, #{createBy}, #{createDate}, #{deptId}, #{email}, #{hobby}, 
+		#{mobile}, #{name}, #{password}, #{sex}, #{stats}, #{updateBy}, #{updateDate}, 
+		#{username}, #{remarks} ) </insert> <update id="update"> UPDATE "sys_user" 
+		SET <if test="username != null">"birthday" = #{birthday},</if> <if test="deptId 
+		!= null">"dept_id" = #{deptId},</if> <if test="email != null">"email" = #{email},</if> 
+		<if test="hobby != null">"hobby" = #{hobby},</if> <if test="mobile != null">"mobile" 
+		= #{mobile},</if> <if test="name != null">"name" = #{name},</if> <if test="sex 
+		!= null">"sex" = #{sex},</if> <if test="stats != null">"stats" = #{stats},</if> 
+		<if test="username != null">"username" = #{username},</if> <if test="updateBy 
+		!= null">"update_by" = #{updateBy},</if> <if test="remarks != null">"remarks" 
+		= #{remarks},</if> <if test="updateDate != null">"update_date" = #{updateDate}</if> 
+		WHERE "id" = #{id} </update> <delete id="delete"> DELETE FROM "sys_user" 
+		WHERE "id"=#{id} </delete> -->
+
+
+</mapper>
