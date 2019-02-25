@@ -2,7 +2,7 @@
 
 ## 平台简介
 
-ggblog是在SpringBoot基础上搭建的一个Java基础开发平台，MyBatis为数据访问层，ApacheShiro为权限授权层。
+ggblog是在SpringBoot基础上搭建的一个Java轻型博客系统，MyBatis为数据访问层，ApacheShiro为权限授权层。
 
 后台包括：系统权限组件、数据权限组件、数据字典组件、博客管理等。
 前端界面风格采用了结构简单、性能优良、页面美观大气的Layui页面展示框架。
