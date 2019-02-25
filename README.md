@@ -2,8 +2,6 @@
 
 ## 平台简介
 
-ggblog是高效率，低封装，Java EE开发框架。
-
 ggblog是在SpringBoot基础上搭建的一个Java基础开发平台，MyBatis为数据访问层，ApacheShiro为权限授权层。
 
 后台包括：系统权限组件、数据权限组件、数据字典组件、博客管理等。
