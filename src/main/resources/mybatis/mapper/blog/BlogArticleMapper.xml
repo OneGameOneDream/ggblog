@@ -11,7 +11,7 @@
 		tags AS "tags",
 		hits AS "hits",
 		author AS "author",
-		allow_comment AS "allow_comment",
+		allow_comment AS "allowComment",
 		link AS "link",
 		image AS "image",
 		sort AS "sort",
@@ -20,7 +20,8 @@
 		update_by AS "updateBy",
 		update_date AS "updateDate",
 		remarks AS "remarks",
-		del_flag AS "delFlag"
+		del_flag AS "delFlag",
+		is_carousel AS "isCarousel"
 	</sql>
 
 	<select id="get" resultType="BlogArticle">
@@ -45,11 +46,25 @@
 			<if test="author != null and author != ''">
 				AND author = #{author}
 			</if>
-			<if test="allow_comment != null and allow_comment != ''">
-				AND allow_comment = #{allow_comment}
+			<if test="allowComment != null and allowComment != ''">
+				AND allow_comment = #{allowComment}
+			</if>
+			<if test="isCarousel != null and isCarousel != ''">
+				AND is_carousel = #{isCarousel}
 			</if>
 		</where>
 		ORDER BY sort,updateDate desc
+	</select>
+	
+	<select id="findCarouselArticle" resultType="BlogArticle">
+		SELECT
+		<include refid="articleColumn" />
+		FROM blog_article
+		<where>
+			AND del_flag != '1' 
+			AND is_carousel = '0'
+		</where>
+		ORDER BY sort,updateDate desc  limit 0,3
 	</select>
 	
 	
@@ -66,8 +81,11 @@
 			<if test="author != null and author != ''">
 				AND author = #{author}
 			</if>
-			<if test="allow_comment != null and allow_comment != ''">
-				AND allow_comment = #{allow_comment}
+			<if test="allowComment != null and allowComment != ''">
+				AND allow_comment = #{allowComment}
+			</if>
+			<if test="isCarousel != null and isCarousel != ''">
+				AND is_carousel = #{isCarousel}
 			</if>
 		</where>
      </select>
@@ -95,7 +113,8 @@
 		update_by,
 		update_date,
 		remarks,
-		del_flag
+		del_flag,
+		is_carousel
 		)
 		VALUES
 		(
@@ -114,7 +133,8 @@
 		#{updateBy},
 		#{updateDate},
 		#{remarks},
-		#{delFlag}
+		#{delFlag},
+		#{isCarousel}
 		)
 	</insert>
 
@@ -126,13 +146,14 @@
 		<if test="content != null">content = #{content},</if>
 		<if test="tags != null">tags = #{tags},</if>
 		<if test="author != null">author = #{author},</if>
-		<if test="allow_comment != null">allow_comment = #{allow_comment},</if>
+		<if test="allowComment != null">allow_comment = #{allowComment},</if>
 		<if test="link != null">link = #{link},</if>
 		<if test="image != null">image = #{image},</if>
 		<if test="sort != null">sort = #{sort},</if>
 		<if test="updateBy != null">update_by = #{updateBy},</if>
 		<if test="remarks != null">remarks = #{remarks},</if>
 		<if test="delFlag != null">del_flag = #{delFlag},</if>
+		<if test="isCarousel != null">is_carousel = #{isCarousel},</if>
 		<if test="updateDate != null">update_date = #{updateDate}</if>
 		WHERE id = #{id}
 	</update>

@@ -18,4 +18,8 @@ public class BlogArticleService extends CrudService<BlogArticleDao, BlogArticle>
 	public List<String> findTags(){
 		return dao.findTags();
 	}
+	//查询轮播图
+	public List<BlogArticle> findCarouselArticle(){
+		return dao.findCarouselArticle();
+	}
 }

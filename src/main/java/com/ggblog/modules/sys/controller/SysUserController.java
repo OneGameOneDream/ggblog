@@ -55,6 +55,8 @@ public class SysUserController {
 	@Log("访问用户列表")
 	@GetMapping("")
 	public String user(Model model, SysUser user) {
+		 
+		
 		return prefix + "list";
 	}
 

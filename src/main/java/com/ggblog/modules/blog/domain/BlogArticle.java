@@ -14,10 +14,19 @@ public class BlogArticle extends BaseEntity<BlogArticle>{
 	private String tags;//标签
 	private Integer hits;//点击量
 	private String author;//作者
-	private String allow_comment;//是否允许评论(0:允许1:不允许)
+	private String allowComment;//是否允许评论(0:允许1:不允许)
 	private String link;//外部链接
 	private String image;//图片
 	private Integer sort; //权重排序
+	private String isCarousel; //是否轮播图
+	
+	
+	public String getIsCarousel() {
+		return isCarousel;
+	}
+	public void setIsCarousel(String isCarousel) {
+		this.isCarousel = isCarousel;
+	}
 	/**
 	 * @return the title
 	 */
@@ -78,17 +87,12 @@ public class BlogArticle extends BaseEntity<BlogArticle>{
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	/**
-	 * @return the allow_comment
-	 */
-	public String getAllow_comment() {
-		return allow_comment;
+	
+	public String getAllowComment() {
+		return allowComment;
 	}
-	/**
-	 * @param allow_comment the allow_comment to set
-	 */
-	public void setAllow_comment(String allow_comment) {
-		this.allow_comment = allow_comment;
+	public void setAllowComment(String allowComment) {
+		this.allowComment = allowComment;
 	}
 	/**
 	 * @return the link
@@ -126,18 +130,20 @@ public class BlogArticle extends BaseEntity<BlogArticle>{
 	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
-	public BlogArticle(String title, String content,  String tags, Integer hits, String author,
-			String allow_comment, String link, String image, Integer sort) {
+
+	public BlogArticle(String title, String content, String tags, Integer hits, String author, String allowComment,
+			String link, String image, Integer sort, String isCarousel) {
 		super();
 		this.title = title;
 		this.content = content;
 		this.tags = tags;
 		this.hits = hits;
 		this.author = author;
-		this.allow_comment = allow_comment;
+		this.allowComment = allowComment;
 		this.link = link;
 		this.image = image;
 		this.sort = sort;
+		this.isCarousel = isCarousel;
 	}
 	public BlogArticle() {
 		super();

@@ -15,4 +15,6 @@ import com.ggblog.modules.blog.domain.BlogArticle;
 public interface BlogArticleDao extends CrudDao<BlogArticle> {
 	//查询文章标签
     List<String> findTags();
+    //查询轮播图
+    List<BlogArticle> findCarouselArticle();
 }
