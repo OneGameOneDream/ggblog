@@ -58,8 +58,6 @@ public class FrontController {
 	public String index(Model model) {
 		//获取轮播图
 		model.addAttribute("carousel",articleService.findCarouselArticle());
-		//获取文章总量
-		model.addAttribute("articleCount",articleService.count(new BlogArticle()));
 		//查询文章标签
 		model.addAttribute("tags",articleService.findTags());
 		return prefix+"index";
