@@ -11,7 +11,7 @@
           <h3>我的介绍</h3>
         </div>
         <div class="cont">
-          <img src="../res/img/xc_img1.jpg" width="385" height="220" th:src="${userInfo.head}">
+          <img src="../res/img/xc_img1.jpg" width="385" height="220" th:src="@{/}+${userInfo.head}">
           <div class="per-info">
             <p>
               <span class="name" th:text="${userInfo.name}">小明</span><br />
@@ -30,7 +30,7 @@
           <div class="layui-row">
             <div class="layui-col-xs6 layui-col-sm3 layui-col-md3" th:each="skill,iterStat : ${list}">
               <div class="cont-box">
-                <img src="../res/img/gr_img2.jpg" th:src="${skill.image}" width="90" height="90">
+                <img src="../res/img/gr_img2.jpg" th:src="@{/}+${skill.image}" width="90" height="90">
                 <p th:text="${skill.name}">80%</p>
               </div>
             </div>
@@ -40,7 +40,6 @@
     </div>
   </div>
    <div th:include="frontInclude :: frontFooter"></div>
-  <div th:include="frontInclude :: footer"></div>
   <script type="text/javascript">
     layui.config({
       base: '../res/js/util/'

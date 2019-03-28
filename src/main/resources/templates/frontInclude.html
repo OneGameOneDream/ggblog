@@ -27,13 +27,13 @@
 	    <h1 class="logo">
 	      <a href="index.html" th:href="@{/f}">
 	        <span>MYBLOG</span>
-	        <img  src="../res/img/logo.png" th:src="${version.logo}" width="100" height="100">
+	        <img  src="../res/img/logo.png" th:src="@{/}+${version.logo}" width="100" height="100">
 	      </a>
 	    </h1>
 	    <div class="nav">
 	      <a href="index.html" th:href="@{/f}" >首页</a>
-	      <a href="leacots.html">留言</a>
-	      <a href="album.html">相册</a>
+	     <!--  <a href="leacots.html">留言</a>
+	      <a href="album.html">相册</a> -->
 	      <a href="about.html"  th:href="@{/f/about}" >关于</a>
 	    </div>
 	    <p class="welcome-text">
@@ -47,7 +47,7 @@
 	<div class="footer-wrap">
     <div class="footer w1000">
       <div class="qrcode">
-        <img src="../res/img/erweima.jpg" width="160" height="160" th:src="${userInfo.qrcode}">
+        <img src="../res/img/erweima.jpg" width="160" height="160" th:src="@{/}+${userInfo.qrcode}">
       </div>
       <div class="practice-mode">
         <div class="text">

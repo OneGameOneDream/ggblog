@@ -14,13 +14,13 @@
 			<input type="hidden" name="content" id="content" th:value="${article.content}">
 			<input type="hidden" name="image" id="image" value="">
 			<div class="layui-form-item">
-				<label class="layui-form-label">标题</label>
+				<label class="layui-form-label">标题：</label>
 				<div class="layui-input-inline" style="width:35%">
 					<input type="text" id="title" name="title" 
 						lay-verify="required|title" autocomplete="off" 
 						placeholder="请输入标题名" class="layui-input" th:value="${article.title}">
 				</div>
-				<label class="layui-form-label">作者</label>
+				<label class="layui-form-label">作者：</label>
 				<div class="layui-input-inline" style="width:35%" >
 					<input type="text" id="author" name="author"
 						lay-verify="required|author" autocomplete="off"
@@ -28,7 +28,7 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">缩略图</label>
+				<label class="layui-form-label">缩略图：</label>
 				<div class="layui-input-block">
 					<div class="layui-upload">
 					  <button type="button" class="layui-btn" id="uploadBtn">上传图片</button>
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">内容</label>
+				<label class="layui-form-label">内容：</label>
 				<div class="layui-input-block">
 					<textarea class="layui-textarea" id="LAY_demo1" style="display: none" th:text="${article.content}">  
 					</textarea>
@@ -57,7 +57,7 @@
 					</div>
 		    </div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">排序</label>
+				<label class="layui-form-label">排序：</label>
 				<div class="layui-input-block">
 					<input type="text" id="sort" name="sort"
 						autocomplete="off" placeholder="请输入排序" class="layui-input" th:value="${article.sort}">
@@ -65,19 +65,29 @@
 			</div>
 
 			<div class="layui-form-item">
-				<label class="layui-form-label">描述</label>
+				<label class="layui-form-label">描述：</label>
 				<div class="layui-input-block">
 					<input type="text" id="remarks" name="remarks"
 						 autocomplete="off"
-						placeholder="请输入描述信息" class="layui-input" lay-verify="required|remarks" th:value="${article.remarks}">
+						placeholder="请输入描述信息" class="layui-input"  th:value="${article.remarks}">
 				</div>
 			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">开启评论</label>
+		 	<div class="layui-form-item">
+				<label class="layui-form-label">开启评论：</label>
 				<div class="layui-input-inline">
-					<input id="" type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="on|off" value="">
+					<input type="radio" name="allowComment" value="0" title="是"  th:attr="checked=${article.allowComment=='0'}">
+			      	<input type="radio" name="allowComment" value="1" title="否"  th:attr="checked=${article.allowComment=='1'}">
+				</div>
+			</div> 
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">轮播图：</label>
+				<div class="layui-input-inline">
+					<input type="radio" name="isCarousel" value="0" title="是"  th:attr="checked=${article.isCarousel=='0'}">
+			      	<input type="radio" name="isCarousel" value="1" title="否"  th:attr="checked=${article.isCarousel=='1'}">
 				</div>
 			</div>
+			
 
 			<div class="layui-form-item">
 				<div class="layui-input-block">

@@ -11,8 +11,8 @@
               <div class="form-box">
                 <div class="article-cont">
                   <div class="title">
-                    <h3 th:text="${article.title}"></h3>
-                    <p class="cont-info"><span class="data" th:text=" ${#dates.format(article.createDate, 'yyyy/MM/dd')}">2018/08/08</span><span class="types" th:text="${article.tags}">散文札记</span></p>
+                    <h2 th:text="${article.title}"></h2>
+                    <p style="padding-top: 20px;padding-bottom: 20px" class="cont-info"><span class="data" th:text=" ${#dates.format(article.createDate, 'yyyy/MM/dd')}">2018/08/08</span><span class="types" th:text="${article.tags}">散文札记</span></p>
                   </div>
                   	<!-- 文章正文 -->
                   	<div th:utext="${article.content}">
