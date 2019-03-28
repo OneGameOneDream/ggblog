@@ -59,9 +59,9 @@ $(function(){
 		 		    }
 		 	      });
           }else{
-        	//请求总数
+        	//请求总数,请求最新文章
             	 $.ajax({
-     			url : "/ggblog/blog/article/count?tags="+tags,
+     			url : "/ggblog/blog/article/count",
      			type : "GET",
      			success : function(data) {
      				if(data.code=='200'){
@@ -98,7 +98,7 @@ $(function(){
   		});
     	var tags = $('.layui-breadcrumb').find('.active').text();
     	$.ajax({
-			url : "/ggblog/blog/article/list?tags="+tags+"&page="+page+"&limit="+limit,
+			url : "/ggblog/blog/article/list?page="+page+"&limit="+limit,
 			type : "GET",
 			success : function(data) {
 				if(data.code=='200'){
@@ -140,7 +140,7 @@ $(function(){
     		+'                 <div class="item-cont">'
     		+'                   <a href="f/article/'+data.id+'"><h3>'+data.title+'<button class="layui-btn layui-btn-danger new-icon">new</button></h3></a>'
     		+'                   <h5><span class="layui-badge  layui-bg-blue">'+data.tags+'</span></h5>'
-    		+'                   <p>'+data.remarks+'</p>'
+    		+'                   <p>更新时间：'+data.updateDate+'</p>'
     		+'                   <a href="f/article/'+data.id+'" class="go-icon"></a>'
     		+'                 </div>'
     		+'             </div>'
