@@ -14,7 +14,9 @@ public class WebConfigurer extends WebMvcConfigurerAdapter {
 	private GGblogConfig ggblogConfig;
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/upload/**").addResourceLocations("file:///"+ggblogConfig.getUploadPath());
+		//实现图片地址转发
+		registry.addResourceHandler("/upload/**").addResourceLocations("file:///"+ggblogConfig.getUploadPath());//转发到本地
+		
 	}
 
 }
