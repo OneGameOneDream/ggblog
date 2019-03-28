@@ -118,7 +118,7 @@ public abstract class BaseEntity<T> {
 	/**
 	 * @return the createDate
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -147,7 +147,7 @@ public abstract class BaseEntity<T> {
 	/**
 	 * @return the updateDate
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	public Date getUpdateDate() {
 		return updateDate;
 	}
