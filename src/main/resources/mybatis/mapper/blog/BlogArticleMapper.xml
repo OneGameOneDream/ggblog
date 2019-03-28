@@ -64,7 +64,7 @@
 			AND del_flag != '1' 
 			AND is_carousel = '0'
 		</where>
-		ORDER BY sort,updateDate desc  limit 0,3
+		ORDER BY sort,updateDate desc
 	</select>
 	
 	
@@ -124,7 +124,7 @@
 		#{tags},
 		#{hits},
 		#{author},
-		#{allow_comment},
+		#{allowComment},
 		#{link},
 		#{image},
 		#{sort},
