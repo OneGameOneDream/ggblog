@@ -83,9 +83,8 @@ layui.config({
 	//全部展开
 	function expand() {
 	    treetable.expandAll('#table');
-	};
-	
-	//全部折叠
+    }
+//全部折叠
 	function fold() {
 	    treetable.foldAll('#table');
-	};
+    }

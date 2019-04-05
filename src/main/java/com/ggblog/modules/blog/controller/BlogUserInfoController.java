@@ -1,34 +1,26 @@
 package com.ggblog.modules.blog.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
+import cn.hutool.core.util.StrUtil;
 import com.ggblog.common.annotation.Log;
 import com.ggblog.common.domain.ApiModel;
 import com.ggblog.common.domain.GGblogConfig;
 import com.ggblog.modules.blog.domain.BlogUserInfo;
 import com.ggblog.modules.blog.service.BlogUserInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import cn.hutool.core.util.StrUtil;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 博主信息控制器
- * 
+ *
  * @author 44359
  *
  */
@@ -47,7 +39,7 @@ public class BlogUserInfoController {
 
 	/**
 	 * 编辑博主信息
-	 * 
+	 *
 	 * @param id
 	 * @param userInfo
 	 * @return
@@ -59,11 +51,11 @@ public class BlogUserInfoController {
 		model.addAttribute("userInfo", userInfo);
 		return prefix + "edit";
 	}
-	
+
 
 	/**
 	 * 修改博主信息
-	 * 
+	 *
 	 * @param id
 	 * @param userInfo
 	 * @return
@@ -96,7 +88,7 @@ public class BlogUserInfoController {
 		String uploadPath = ggblogConfig.getUploadPath()+"userInfo/pics";
 		File file2 = new File(uploadPath);
 		if(!file2.exists()) {
-			file2.mkdirs(); 
+			file2.mkdirs();
 		}
 		if(!file.isEmpty()) {
 			//生成uuid作为文件名字

@@ -12,7 +12,7 @@
 		    form.on('submit(submitBtn)', function(data){
 		    	submit();
 		    });
-		})
+		});
 		
 		/*提交表单*/
 		function submit(){
@@ -39,4 +39,4 @@
 					layer.msg('服务器相应失败',{time:1000});
 				}
 			});
-		};
+        }

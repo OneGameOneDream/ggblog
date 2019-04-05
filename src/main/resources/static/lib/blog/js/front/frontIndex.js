@@ -3,33 +3,33 @@
  */
 $(function(){
   	$('.tag').each(function(index){
-  		if(index==0){
+  		if(index===0){
 	    		$(this).addClass("active");
   		}
-  	})
+  	});
   	
   	$('.tag').click(function(){
   		$('.tag').each(function(){
   			$(this).removeClass('active');
-  		})
+  		});
   		$(this).addClass("active");
   		page();
-  	})
+  	});
   	//分页
   	page();
-})
+});
   
     layui.config({
       base: '/ggblog/lib/blog/js/util/'
     }).use(['element','jquery','menu'],function(){
       element = layui.element,$ = layui.$,menu = layui.menu;
       menu.init();
-    })
+    });
     
     //分页
     function page(){
 	  layui.use(['laypage'], function () {
-          laypage = layui.laypage
+          laypage = layui.laypage;
           var tags = $('.layui-breadcrumb').find('.active').text();
           if(tags=='少数派'){
         	//开始分页

@@ -1,10 +1,10 @@
 package com.ggblog.modules.sys.controller;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.ggblog.common.annotation.Log;
+import com.ggblog.common.domain.ApiModel;
+import com.ggblog.modules.sys.domain.SysMenu;
+import com.ggblog.modules.sys.service.SysMenuService;
+import com.ggblog.modules.sys.service.SysUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -14,18 +14,10 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import com.ggblog.common.annotation.Log;
-import com.ggblog.common.domain.ApiModel;
-import com.ggblog.modules.sys.domain.SysMenu;
-import com.ggblog.modules.sys.domain.SysUser;
-import com.ggblog.modules.sys.service.SysMenuService;
-import com.ggblog.modules.sys.service.SysUserService;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 登录controller
@@ -108,11 +100,11 @@ public class LoginController {
 		}
 		Subject user = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password,rememberMe);
-		SysUser sysUser = userService.getByUsername(username);
-		sysUser.setLoginIp(request.getLocalAddr());
-		sysUser.setLoginDate(new Date());
-		sysUser.setLoginCount(sysUser.getLoginCount()+1);
-		userService.update(sysUser);
+//		SysUser sysUser = userService.getByUsername(username);
+//		sysUser.setLoginIp(request.getLocalAddr());
+//		sysUser.setLoginDate(new Date());
+//		sysUser.setLoginCount(sysUser.getLoginCount()+1);
+//		userService.update(sysUser);
 		try {
 			// shiro帮我们匹配密码什么的，我们只需要把东西传给它，它会根据我们在UserRealm里认证方法设置的来验证
 			user.login(token);

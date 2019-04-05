@@ -10,17 +10,17 @@
 function layer_show(title,url,w,h,max){
 	if (title == null || title == '') {
 		title=false;
-	};
-	if (url == null || url == '') {
+    }
+    if (url == null || url == '') {
 		url="404.html";
-	};
-	if (w == null || w == '') {
+    }
+    if (w == null || w == '') {
 		w=800;
-	};
-	if (h == null || h == '') {
+    }
+    if (h == null || h == '') {
 		h=($(window).height() - 50);
-	};
-	//验证权限
+    }
+    //验证权限
 	  $.ajax({
 	        type: "Get",
 	        url: url,                  //ajax请求地址
@@ -77,7 +77,7 @@ function batchDelete(url) {
 	var table = layui.table;
       var checkStatus = table.checkStatus('table')
       ,data = checkStatus.data;
-      var arr = new Array();
+      var arr = [];
       for(var i in data){
 		  arr.push(data[i].id);		    	  
       }
@@ -94,7 +94,7 @@ function batchDelete(url) {
 						if(data.code=='200'){
 							$('input[type="checkbox"][name="delId"]:checked').each(function(){
 								$(this).parents("tr").remove();
-							})
+							});
 							layer.msg('批量删除成功!',{time:1000});
 							//表格重载
 							search();

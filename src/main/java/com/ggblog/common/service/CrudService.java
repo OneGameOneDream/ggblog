@@ -1,16 +1,14 @@
 package com.ggblog.common.service;
 
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
+import cn.hutool.core.util.IdUtil;
 import com.ggblog.common.dao.CrudDao;
 import com.ggblog.common.domain.BaseEntity;
 import com.ggblog.common.domain.SysPage;
 import com.ggblog.modules.sys.util.UserUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.hutool.core.util.IdUtil;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Service模板
@@ -73,7 +71,7 @@ public abstract class CrudService<D extends CrudDao<T>, T extends BaseEntity<T>>
 		int pageNum = (entity.getPage()-1)*pageSize;
 		int totalPage = (totalCount-1+pageSize)/pageSize;
 		boolean isNext = pageNum == 1;
-		boolean isPrev = pageNum == totalPage?false:true;
+		boolean isPrev = pageNum != totalPage;
 		entity.setSysPage(new SysPage<>(pageNum, pageSize));
 		List<T> list = dao.findList(entity);
 		return new SysPage<T>(pageNum, totalCount, totalPage, pageSize, list, isNext, isPrev);

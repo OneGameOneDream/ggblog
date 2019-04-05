@@ -19,7 +19,7 @@
 		    form.on('submit(submitBtn)', function(data){
 		    	submit();
 		    });
-		})
+		});
 		
 		/*提交表单*/
 		function submit(){
@@ -47,4 +47,4 @@
 				}
 
 			});
-		};
+        }

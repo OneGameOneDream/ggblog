@@ -103,7 +103,7 @@ layui.config({
                 return layui.onevent.call(this, MOD_NAME, events, callback);
             }
             ,getClass:function (tableId) {
-                return table.cache.cla.claObjs[tableId];;
+                return table.cache.cla.claObjs[tableId];
             }
             ,pushClass:function (tableId,that) {
                 table.cache.cla.claObjs[tableId]=that;
@@ -358,8 +358,8 @@ layui.config({
                             var b2=o+"";
                             if(b1==b2){
                                 temo=e;
-                                return;
-                            };
+
+                            }
                         });
                         if(temo){
                             var v=temo[table.config.indexName];
@@ -390,7 +390,7 @@ layui.config({
                 data.forEach(function (e) {
                     if(e[table.config.indexName]==v){
                         retObj=e;
-                    };
+                    }
                 });
                 return table.clearCacheKey(retObj);
             }
@@ -414,8 +414,8 @@ layui.config({
                         var b2=value+"";
                         if(b1==b2){
                             retObj=e;
-                            return;
-                        };
+
+                        }
                     });
 
                     if(retObj){
@@ -950,7 +950,7 @@ layui.config({
         options.request = $.extend({
             pageName: 'page'
             ,limitName: 'limit'
-        }, options.request)
+        }, options.request);
         //响应数据的自定义格式
         options.response = $.extend({
             statusName: 'code'
@@ -1075,7 +1075,7 @@ layui.config({
      */
     Class.prototype.getTr = function(index){
         var that = this;
-        var tr = that.layBody.find('tr[data-index="'+ index +'"]')
+        var tr = that.layBody.find('tr[data-index="'+ index +'"]');
         return tr;
     };
 
@@ -1119,7 +1119,7 @@ layui.config({
             $(this).data('index',i);
             i++;
         });
-    }
+    };
 
     /**
      * 初始化节点
@@ -1146,7 +1146,7 @@ layui.config({
         if(n[table.config.cols.cheDisabled])options.cheDisabledNum++;
         if(n[table.config.cols.radDisabled])options.radDisabledNum++;
         n.children=[];
-    }
+    };
     /**
      * 构建map数据
      * @param list
@@ -1163,7 +1163,7 @@ layui.config({
             });
         }
         return map;
-    }
+    };
     Class.prototype.resetDataresetRoot=true;//是否重新确定根节点
     /**
      * 确定根节点id(重新登录根节点)
@@ -1192,7 +1192,7 @@ layui.config({
             }
         }
         return rootList;
-    }
+    };
     /**
      * 处理树结构
      * 1、原始列表数据
@@ -1215,7 +1215,7 @@ layui.config({
                 }
             }
             return _array;
-        }
+        };
         rootList.forEach(function (temo) {
             var temTreeObj=fa(temo);//递归
             if(temTreeObj){
@@ -1225,7 +1225,7 @@ layui.config({
             }
         });
         return treeList;
-    }
+    };
 
     /**
      * 处理数据列表结构
@@ -1247,8 +1247,8 @@ layui.config({
                     fa2(n.children,1+level);
                 }
             }
-            return;
-        }
+
+        };
         fa2(treeList,1);
 
         //设置isOpen 和is_show状态
@@ -1261,7 +1261,7 @@ layui.config({
             }
         });
         return tableList;
-    }
+    };
 
     /**
      * 重置当前表格的数据（1、普通列表；2树状表格）
@@ -1282,8 +1282,8 @@ layui.config({
         var tableList=list;
         var map=that.resetDataMap(list);//列表map，fieldId为key  //设置map数据集合
         datas.push(tableList);//table结构
-        datas.push(treeList)//tree树结构
-        datas.push(map)//data数据 map结构
+        datas.push(treeList);//tree树结构
+        datas.push(map);//data数据 map结构
         //设置到内存中去
         table.setDataList(that.config.id,tableList);
         table.setDataTreeList(that.config.id,treeList);
@@ -1309,7 +1309,7 @@ layui.config({
         }
         //console.timeEnd("resetDatas");
         return datas;
-    }
+    };
     /**
      * 根据id从表格数据中获取对象
      * @param data
@@ -1326,11 +1326,11 @@ layui.config({
         list.forEach(function (o) {
             if(o[key]==u_Id){
                 e=o;
-                return;
+
             }
         });
         return e;
-    }
+    };
     /**
      * 获取父节点
      * @param u_Id
@@ -1344,7 +1344,7 @@ layui.config({
         var mapData=table.getDataMap(that.config.id);//获取map形式对象集合
         uOjb=mapData[o[key]];
         return uOjb;
-    }
+    };
     /**
      * 获取全部父节点集合，返回list(不包含自己)
      * @param u_Id
@@ -1363,7 +1363,7 @@ layui.config({
         };
         temf(o);
         return list;
-    }
+    };
     /**
      * 根据父id获取全部的叶子节点(递归)
      * @param o 数据对象
@@ -1403,7 +1403,7 @@ layui.config({
             }()
             +'">'
             +function () {//位移量
-                var nbspHtml="<i>"//一次位移
+                var nbspHtml="<i>";//一次位移
                 for(var i=1;i<o[table.config.cols.level];i++) {
                     nbspHtml = nbspHtml + "&nbsp;&nbsp;&nbsp;&nbsp;";
                 }
@@ -1460,7 +1460,7 @@ layui.config({
                     fa(n);
                 }
             }
-        }
+        };
         fa(o);
         //处理图标
         that.treeIconRender(o,false);
@@ -1497,7 +1497,7 @@ layui.config({
                 }
                 temhtml+=') 0 0 no-repeat;"></i>';
                 return temhtml;
-            }
+            };
             if(isTreeNode){//父节点
                 if((o[table.config.cols.iconOpen]||o[table.config.cols.iconClose])){
                     temTreeHtml=temf();
@@ -1521,7 +1521,7 @@ layui.config({
         }else{
             return temTreeHtml;
         }
-    }
+    };
     //获得数据
     Class.prototype.pullData = function(curr, loadIndex){
         var that = this
@@ -1548,11 +1548,11 @@ layui.config({
                 ,headers:options.headers
                 ,success: function(res){
                     if(!res[response.dataName]){//返回是未定义或null时转成[]
-                        res[response.dataName]=[]
+                        res[response.dataName]=[];
                         res[response.statusName]=0;
                         res[response.countName]=0;
                         res[response.msgName]='返回的数据状态异常';
-                    };
+                    }
                     that.resetDataresetRoot=true;
                     //如果有数据解析的回调，则获得其返回的数据
                     if(typeof options.parseData === 'function'){
@@ -1579,7 +1579,7 @@ layui.config({
                 }
             });
         } else if(options.data && options.data.constructor === Array){ //已知数据
-            var res = {},startLimit = curr*options.limit - options.limit
+            var res = {},startLimit = curr*options.limit - options.limit;
             res[response.dataName] = options.data.concat().splice(startLimit, options.limit);
             res[response.countName] = options.data.length;
             that.renderData(res, curr, options.data.length);
@@ -1594,7 +1594,7 @@ layui.config({
     Class.prototype.filterRulesSet=function (p) {
         var that = this;
         p["filterRules"]=JSON.stringify(that.filterRules());
-    }
+    };
     /**
      * 获取过滤条件
      * filterRules:
@@ -1615,13 +1615,13 @@ layui.config({
                     ,"op":"like"
                     ,"value":$(o).val()
                     ,"datatype":"string"
-                }
+                };
                 filterRules.push(tem);
             }
         });
         // console.log(filterRules,filterRules.toString(),JSON.stringify(filterRules));
         return filterRules;
-    }
+    };
 
     //遍历表头
     Class.prototype.eachCols = function(callback){
@@ -1634,7 +1634,7 @@ layui.config({
                 //如果是组合列，则捕获对应的子列
                 if(item2.colspan > 1){
                     var childIndex = 0;
-                    index++
+                    index++;
                     item2.CHILD_COLS = [];
                     layui.each(cols[i1 + 1], function(i22, item22){
                         if(item22.PARENT_COL || childIndex == item2.colspan) return;
@@ -1671,7 +1671,7 @@ layui.config({
         var temdiv=that.layBody.find('tr[data-index="'+ o[table.config.indexName] +'"]').find('td[data-field='+options[TREE_SHOW_NAME]+']').find('.layui-table-cell');
         $(temdiv).find('div').remove();
         $(temdiv).prepend(temhtml);
-    }
+    };
     /**
      * 渲染表格单元格样式(宽度样式设置)
      * @param callback
@@ -1696,7 +1696,7 @@ layui.config({
                 return ret;
             }()+'</style>';
         hasRender.append(styel);
-    }
+    };
 
     /**
      * 单元格编辑模式渲染
@@ -1755,14 +1755,14 @@ layui.config({
                     if(options.model=="tree"){//树组件
                         that.layHeader.hide();//隐藏头部
                         that.layFilter.hide();//隐藏行内过滤
-                        ret+="."+options.id+" .layui-table td,."+options.id+"{border-style: none;padding:0;}"
+                        ret+="."+options.id+" .layui-table td,."+options.id+"{border-style: none;padding:0;}";
                         ret+="."+options.id+" .layui-table-view .layui-table{width:100%;}"
                     }
                 }
                 return ret;
             }()+'</style>';
         hasRender.append(styel);
-    }
+    };
 
     /**
      * 生成单元格
@@ -1776,10 +1776,10 @@ layui.config({
             ,options = that.config;
         var tree_upid_key=options[TREE_UPID];
         var upids=' upids="'+obj["upIds"]+'" ';
-        var u_id=' u_id="'+obj[tree_upid_key]+'" '
+        var u_id=' u_id="'+obj[tree_upid_key]+'" ';
         var ret=options.isTree?u_id:'';
         return ret;
-    }
+    };
     /**
      * 生成单元格
      * @param obj       行数据
@@ -1864,7 +1864,7 @@ layui.config({
             }()
             ,'</p></div></td>'].join('');
         return td;
-    }
+    };
     /**
      * 生成tr中的一行
      * @param obj            行数据
@@ -2060,7 +2060,7 @@ layui.config({
     //渲染表单
     Class.prototype.renderForm = function(type){
         form.render(type, 'LAY-table-'+ this.index);
-    }
+    };
     /**
      * 设置排序参数
      * @param p
@@ -2074,12 +2074,12 @@ layui.config({
                 var tem={
                     "field":t.field
                     ,"sort":t.sortType
-                }
+                };
                 sort.push(tem);
             }
         });
         p.sort=JSON.stringify(sort);
-    }
+    };
     /**
      * 设置排序字段
      * @param th
@@ -2211,7 +2211,7 @@ layui.config({
     };
 
     Class.prototype.test = function(){
-    }
+    };
     /**
      * 窗体变化自适应
      */
@@ -2246,7 +2246,7 @@ layui.config({
                 //如果父元素宽度为0（一般为隐藏元素），则继续查找上层元素，直到找到真实宽度为止
                 var getWidth = function(parent){
                     var width, isNone;
-                    parent = parent || options.elem.parent()
+                    parent = parent || options.elem.parent();
                     width = parent.width();
                     try {
                         isNone = parent.css('display') === 'none';
@@ -2452,12 +2452,12 @@ layui.config({
             }
             dict.allowResize = othis.width() - pLeft <= 10; //是否处于拖拽允许区域
             _BODY.css('cursor', (dict.allowResize ? 'col-resize' : ''));
-        })
+        });
         th.unbind('mouseleave').on('mouseleave', function(){
             var othis = $(this);
             if(dict.resizeStart) return;
             _BODY.css('cursor', '');
-        })
+        });
         th.unbind('mousedown').on('mousedown', function(e){
             var othis = $(this);
             if(dict.allowResize){
@@ -2486,7 +2486,7 @@ layui.config({
                 }
                 resizing = 1
             }
-        })
+        });
         _DOC.unbind('mouseup').on('mouseup', function(e){
             if(dict.resizeStart){
                 dict = {};
@@ -2515,11 +2515,11 @@ layui.config({
             }
             that.sort(othis, type, null, true);
             table.query(that.key);//从新查询
-        })
+        });
         th.find(ELEM_SORT+' .layui-edge ').unbind('click').on('click', function(e){//点击小三角形
             var othis = $(this)
                 ,index = othis.index()
-                ,field = othis.parents('th').eq(0).data('field')
+                ,field = othis.parents('th').eq(0).data('field');
             layui.stope(e);
             if(index === 0){
                 that.sort(field, 'asc', null, true);
@@ -2566,7 +2566,7 @@ layui.config({
             var othis = $(this)
                 ,index = othis.index();
             that.layBody.find('tr:eq('+ index +')').addClass(ELEM_HOVER)
-        })
+        });
         that.layBody.on('mouseleave','tr', function(){
             var othis = $(this)
                 ,index = othis.index();
@@ -2639,7 +2639,7 @@ layui.config({
             //显示编辑表单
             if(editType&&options.editModel=="dblclick"){
                 that.renderTdEdit(index,field);
-                return;
+
             }
         });
         that.layBody.on('change','.'+ELEM_EDIT, function(){
@@ -2742,7 +2742,7 @@ layui.config({
                                 temf(temuo);
                             }
                         }
-                    }
+                    };
                     var uo=that.treeFindUpData(obj);
                     temf(uo);
                 }
@@ -2800,7 +2800,7 @@ layui.config({
             });
             tr.addClass(ELEM_CLICK).siblings('tr').removeClass(ELEM_CLICK);
         });
-    }
+    };
     //表格重载
     thisTable.config = {};
     //自动完成渲染

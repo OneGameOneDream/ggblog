@@ -162,7 +162,7 @@ $(function () {
     $('#submitBtn').click(function(){
     	debugger;
     	 var nodes = treeObj.getCheckedNodes(true);
-    	 var nodeArr =  new Array();
+    	 var nodeArr =  [];
  	       if(nodes!=null){
  	    	   for(var i in nodes){
  	    		   nodeArr.push(nodes[i].id);

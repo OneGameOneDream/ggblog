@@ -69,7 +69,7 @@ var layedit;
     form.on('submit(submitBtn)', function(data){
     	submit();
     });
-})
+});
 
 /*提交表单*/
 function submit(){
@@ -102,5 +102,5 @@ function submit(){
 		}
 
 	});
-};
+}
 

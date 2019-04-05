@@ -1,14 +1,5 @@
 package com.ggblog.modules.blog.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.ggblog.modules.blog.domain.BlogArticle;
 import com.ggblog.modules.blog.domain.BlogSkill;
 import com.ggblog.modules.blog.domain.BlogUserInfo;
@@ -17,6 +8,14 @@ import com.ggblog.modules.blog.service.BlogArticleService;
 import com.ggblog.modules.blog.service.BlogSkillService;
 import com.ggblog.modules.blog.service.BlogUserInfoService;
 import com.ggblog.modules.blog.service.BlogVersionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/f")

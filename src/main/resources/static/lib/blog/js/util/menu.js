@@ -13,13 +13,13 @@ layui.define(['mm','jquery'],function(exports){
     init: function(){
       $('.menu').on('click',function(){
         if($(this).hasClass('on')){
-          $(this).removeClass('on')
+          $(this).removeClass('on');
           $('.header-down-nav').removeClass('layui-show');
         }else{
-          $(this).addClass('on')
+          $(this).addClass('on');
           $('.header-down-nav').addClass('layui-show');
         }
-      })
+      });
       window.onresize = function () {
         var curwidth = document.documentElement.clientWidth;
         if(curwidth > 760){
@@ -31,17 +31,17 @@ layui.define(['mm','jquery'],function(exports){
     $('.volume span').text(count);
     $('.op-list .like').on('click',function(){
       var oSpan =  $(this).children('span');
-      var num = parseInt($(oSpan).text())
-      var off = $(this).attr('off')
+      var num = parseInt($(oSpan).text());
+      var off = $(this).attr('off');
         if(off){
           $(this).removeClass('active');
           off = true;
-          $(oSpan).text(num-1)
+          $(oSpan).text(num-1);
           $(this).attr('off','')
         }else{
           $(this).addClass('active');
           off = false;
-          $(oSpan).text(num+1)
+          $(oSpan).text(num+1);
           $(this).attr('off','true')
         }
       })
@@ -59,8 +59,8 @@ layui.define(['mm','jquery'],function(exports){
           $(cont).addClass('layui-hide');
         }else{
           $(text).text('收起');
-          $(chi).attr('class','layui-icon layui-icon-up')
-          $(this).attr('off','true')
+          $(chi).attr('class','layui-icon layui-icon-up');
+          $(this).attr('off','true');
           $(cont).removeClass('layui-hide')
         }
       })
@@ -70,7 +70,7 @@ layui.define(['mm','jquery'],function(exports){
         var event = e || event;
         event.preventDefault();
         var $listcont = $(this).parents('.form').siblings('.list-cont').length ? $(this).parents('.form').siblings('.list-cont') : $(this).parents('.form-box').siblings('.list-cont');
-        console.log($listcont)
+        console.log($listcont);
         var img = $(this).parents('form').siblings('img').attr('src');
         var textarea = $(this).parents('.layui-form-item').siblings('.layui-form-text').children('.layui-input-block').children('textarea');
         var name = $(textarea).val();
@@ -79,7 +79,7 @@ layui.define(['mm','jquery'],function(exports){
           avatar : img,
           name : '吴亦凡',
           cont : name,
-        }
+        };
         if(name){
           var cont = mm.renderHtml(html,data);
           $listcont.prepend(cont);
@@ -92,6 +92,6 @@ layui.define(['mm','jquery'],function(exports){
         cunt.text(cunts);
       })
     }
-  }     
+  };
   exports('menu',menu)
 });
